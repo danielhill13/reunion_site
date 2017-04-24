@@ -1,0 +1,23 @@
+{
+  "name": "reunion_site",
+  "version": "1.0.0",
+  "description": "Family Reunion Site",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielhill13/reunion_site.git"
+  },
+  "author": "Daniel Hill",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielhill13/reunion_site/issues"
+  },
+  "homepage": "https://github.com/danielhill13/reunion_site#readme",
+  "dependencies": {
+    "ejs": "^2.5.6",
+    "express": "^4.15.2"
+  }
+}
