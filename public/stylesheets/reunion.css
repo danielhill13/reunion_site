@@ -5,3 +5,7 @@
 body {
     margin: 0.66%;
 }
+img {
+    max-width: 500px;
+    max-height: 400px;
+}
