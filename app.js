@@ -61,7 +61,6 @@ app.get("/destinations", function(req, res){
 //UPDATE
 //DESTROY
 
-
 app.listen(3000, function(req, res){
     console.log("Family Server Started");
 });
