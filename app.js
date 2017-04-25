@@ -6,16 +6,16 @@ var express = require('express'),
 
 
 //CONFIG
-app.use(express.static("public"));
+app.use(express.static('public'));
 app.set("view engine", "ejs");
-mongoose.connect("mongodb://localhost/blog_site");
+mongoose.connect("mongodb://localhost/reunion_site");
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 
 var destinationSchema = new mongoose.Schema({
     Location: String,
-    image: String,
+    url: String,
     body: String,
     created: {type: Date, default: Date.now}
 });
@@ -41,21 +41,31 @@ app.get("/signup", function(req, res){
     res.render('signup');
 });
 
-
 app.get("/destinations", function(req, res){
-    // Destination.find({}, function(err, destinations){
-    //     if(err){
-    //         console.log("Error!");
-    //     } else {
-    //         res.render("destinations", {destinations: destinations});
-    //     }
-    // });
-    res.render("destinations");
+    Destination.find({}, function(err, destinations){
+        if(err){
+            console.log("Error!");
+        } else {
+            res.render("destinations", {destinations: destinations});
+        }
+    });
 });
 
-//RESTFUL ROUTES
+//RESTFUL ROUTES DESTINATIONS
 //NEW
+app.get("/destinations/new", function(req, res){
+    res.render("newdestination");
+});
 //CREATE
+app.post("/destinations", function(req, res){
+    Destination.create(req.body.destination, function(err, newDestination){
+        if(err){
+            console.log("Error creating destination");
+        } else {
+            res.redirect("/destinations");
+        }
+    })
+})
 //SHOW
 //EDIT
 //UPDATE

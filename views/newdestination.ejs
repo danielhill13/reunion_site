@@ -1,0 +1,22 @@
+<% include ./partials/header %>
+
+<div class ="ui main text container segment">
+    <div class="ui huge header">New Destination</div>
+    <form class="ui form" action="/destinations" method="POST">
+    <div class="field">
+        <label>Location</label>
+        <input type="text" name="destination[title]" placeholder="location">
+    </div>
+    <div class="field">
+        <label>Link to Destination</label>
+        <input type="text" name="destination[url]" placeholder="URL / Link">
+    </div>
+    <div class="field">
+        <label>Details about the location</label>
+        <textarea name="destination[body]"></textarea>
+    </div>
+    <input class="ui blue basic big button" type="submit">
+    </form>
+</div>
+
+<% include ./partials/footer %>

@@ -10,4 +10,17 @@
     </div>
 </div>
 
+
+<% destinations.forEach(function(destination){ %>
+    <div>
+        <h2><%=destination.title%></h2>
+        <a href="<%=destination.url%>"><%= destination.url %></a>
+        <p><%=destination.created.toDateString()%></p>
+        <p><%= destination.body.substring(0, 100) %>...</p>
+        <a href="/destination/<%= destination._id %>">Read More</a>
+    </div>
+<%}) %>
+
+
 <%include ./partials/footer %>
+
