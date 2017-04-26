@@ -2,23 +2,20 @@
 
 <h1>Destinations Page</h1>
 
-<div class="ui top attached">
-    <div class="item">
-<h4>Sample Destination</h4>
-<img class="ui rounded image" src="https://upload.wikimedia.org/wikipedia/commons/d/de/Kaj_Family_reunion_group_1988.jpg" alt="Sample Family Reunion">
-<p>This a description of a destination....</p>
-    </div>
-</div>
+<a href="/destinations/new" class="item">New Post</a>
 
 
 <% destinations.forEach(function(destination){ %>
     <div>
-        <h2><%=destination.title%></h2>
+        <h2><%=destination.location%></h2>
         <a href="<%=destination.url%>"><%= destination.url %></a>
         <p><%=destination.created.toDateString()%></p>
         <p><%= destination.body.substring(0, 100) %>...</p>
-        <a href="/destination/<%= destination._id %>">Read More</a>
+        <p>Submited by: <%= destination.submittedBy %></p>
+        <a href="/destinations/<%= destination._id %>">Read More</a>
     </div>
+    <div class="ui divider"></div>
+
 <%}) %>
 
 

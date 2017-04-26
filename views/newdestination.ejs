@@ -5,15 +5,19 @@
     <form class="ui form" action="/destinations" method="POST">
     <div class="field">
         <label>Location</label>
-        <input type="text" name="destination[title]" placeholder="location">
+        <input type="text" name="destination[location]" placeholder="location">
     </div>
     <div class="field">
         <label>Link to Destination</label>
         <input type="text" name="destination[url]" placeholder="URL / Link">
     </div>
     <div class="field">
-        <label>Details about the location</label>
+        <label>Details...why should the reunion be here?</label>
         <textarea name="destination[body]"></textarea>
+    </div>
+    <div class="field">
+        <label>Submitted By</label>
+        <input type="text" name="destination[submittedBy]" placeholder="Your Name">
     </div>
     <input class="ui blue basic big button" type="submit">
     </form>

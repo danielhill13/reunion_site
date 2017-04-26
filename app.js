@@ -14,9 +14,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 
 var destinationSchema = new mongoose.Schema({
-    Location: String,
+    location: String,
     url: String,
     body: String,
+    submittedBy: String,
     created: {type: Date, default: Date.now}
 });
 var Destination = mongoose.model("Destination", destinationSchema);
@@ -67,7 +68,27 @@ app.post("/destinations", function(req, res){
     })
 })
 //SHOW
-//EDIT
+app.get("/destinations/:id", function(req, res){
+    Destination.findById(req.params.id, function(err, foundDestination){
+        if(err){
+            res.redirect("/destinations");
+        }else {
+            res.render("showdestination", {destination: foundDestination});
+        }
+    })
+});
+//EDIT - takes me to edit destinations page
+app.get("/destinations/:id/edit", function(req, res){
+    //get ID and put in url
+    Destination.findById(req.params.id, function(err, foundDestination){
+        if(err){
+            res.redirect("/destinations");
+        } else {
+            res.render("editdestination", {destination: foundDestination});
+        }
+    })
+    //prepopulate forms
+});
 //UPDATE
 //DESTROY
 
