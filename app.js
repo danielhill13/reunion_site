@@ -2,7 +2,9 @@ var express = require('express'),
     app = express(),
     mongoose = require("mongoose"),
     bodyParser = require("body-parser"),
-    methodOverride = require("method-override");
+    methodOverride = require("method-override"),
+    expressSanitizer = require('express-sanitizer');
+
 
 
 //CONFIG
@@ -12,6 +14,7 @@ mongoose.connect("mongodb://localhost/reunion_site");
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
+app.use(expressSanitizer());
 
 var destinationSchema = new mongoose.Schema({
     location: String,
@@ -46,6 +49,7 @@ app.get("/destinations/new", function(req, res){
 });
 //CREATE
 app.post("/destinations", function(req, res){
+    req.body.destination.body = req.sanitize(req.body.destination.body);
     Destination.create(req.body.destination, function(err, newDestination){
         if(err){
             console.log("Error creating destination");
@@ -78,6 +82,8 @@ app.get("/destinations/:id/edit", function(req, res){
 });
 //UPDATE
 app.put("/destinations/:id", function(req, res){
+    req.body.destination.body = req.sanitize(req.body.destination.body);
+
     Destination.findByIdAndUpdate(req.params.id, req.body.destination, function(err, updatedDestination){
         if(err){
             console.log("Error Updating Destination");

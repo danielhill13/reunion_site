@@ -23,3 +23,10 @@ i.icon {
 #delete {
     display: inline;
 }
+
+#footer {
+    position : absolute;
+    bottom : 0;
+    height : 40px;
+    margin-top : 100px;
+}
