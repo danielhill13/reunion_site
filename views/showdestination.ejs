@@ -3,14 +3,21 @@
     <div class="ui huge header"><%= destination.location %></div>
     <div class="ui top attached">
         <div class="item">
+            <div class="description">
+            <h4>We should go here because....</h4>
+            <p><%= destination.body %></p>
+            </div>
             <div class="content">
-                <a href="<%= destination.url %>">Link to Read More</a>
+                <a href="<%= destination.url %>">Learn more...</a>
+            <div class="content">
+                <p>Submitted by: <%= destination.submittedBy %></p>
+            </div>
+            <img class="ui centered rounded image" src="<%= destination.image %>" alt="<%=destination.location %> Image">
+
             <div class="content">
                 <span> <%= destination.created.toDateString() %></span>
             </div>
-            <div class="description">
-                <p><%= destination.body %></p>
-            </div>
+
             <a class="ui orange basic button" href="/destinations/<%= destination._id %>/edit">Edit Post</a>
             <form id="delete" action="/destinations/<%= destination._id %>?_method=DELETE" method="POST">
                 <button class="ui red basic button">Delete Post</button>
