@@ -3,33 +3,25 @@ var express = require('express'),
     mongoose = require("mongoose"),
     bodyParser = require("body-parser"),
     methodOverride = require("method-override"),
-    expressSanitizer = require('express-sanitizer');
+    expressSanitizer = require('express-sanitizer')
+    Destination = require("./models/destination"),
+    Comment = require("./models/comment"),
+    seedDB = require("./seeds");
 
 
 
 //CONFIG
-app.use(express.static('public'));
-app.set("view engine", "ejs");
 mongoose.connect("mongodb://localhost/reunion_site");
-app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
+app.set("view engine", "ejs");
+app.use(express.static('public'));
 app.use(methodOverride("_method"));
 app.use(expressSanitizer());
-
-var destinationSchema = new mongoose.Schema({
-    location: String,
-    image: String,
-    url: String,
-    body: String,
-    submittedBy: String,
-    created: {type: Date, default: Date.now}
-});
-var Destination = mongoose.model("Destination", destinationSchema);
 
 app.get("/", function(req, res){
     res.render('index');
 });
-
+seedDB();
 
 
 //DESTINATIONS AND ALL THE RESTful ROUTES
@@ -38,14 +30,14 @@ app.get("/destinations", function(req, res){
         if(err){
             console.log("Error!");
         } else {
-            res.render("destinations", {destinations: destinations});
+            res.render("destinations/index", {destinations: destinations});
         }
     });
 });
 
 //NEW
 app.get("/destinations/new", function(req, res){
-    res.render("newdestination");
+    res.render("destinations/new");
 });
 //CREATE
 app.post("/destinations", function(req, res){
@@ -64,7 +56,7 @@ app.get("/destinations/:id", function(req, res){
         if(err){
             res.redirect("/destinations");
         }else {
-            res.render("showdestination", {destination: foundDestination});
+            res.render("destinations/show", {destination: foundDestination});
         }
     })
 });
@@ -75,7 +67,7 @@ app.get("/destinations/:id/edit", function(req, res){
         if(err){
             res.redirect("/destinations");
         } else {
-            res.render("editdestination", {destination: foundDestination});
+            res.render("destinations/edit", {destination: foundDestination});
         }
     })
     //prepopulate forms
