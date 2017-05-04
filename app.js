@@ -23,7 +23,7 @@ app.get("/", function(req, res){
 });
 
 refreshDB.killDB();
-// refreshDB.seedDB();
+refreshDB.seedDB();
 
 
 //DESTINATIONS ROUTES

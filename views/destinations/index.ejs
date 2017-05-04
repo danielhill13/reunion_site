@@ -9,10 +9,9 @@
     <div>
         <h2><%=destination.location%></h2>
         <img class="ui rounded image" src="<%=destination.image%>"><br>
+        <p><%- destination.body %>
+        <a href="/destinations/<%= destination._id %>">More Info</a></p>
         <a href="<%=destination.url%>"><%= destination.url %></a>
-        <p><%=destination.created.toDateString()%></p>
-        <p><%- destination.body.substring(0, 100) %>
-        <a href="/destinations/<%= destination._id %>">...Read More</a></p>
         <p>Submitted by: <%= destination.submittedBy %></p>
     </div>
     <div class="ui divider"></div>

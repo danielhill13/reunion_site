@@ -2,16 +2,18 @@ var mongoose = require("mongoose");
 var Destination = require("./models/destination");
 var Comment = require("./models/comment");
 var data = [{
-    location: "Cloud's Rest",
-    image: "http://i.imgur.com/RW0Xv7G.jpg",
-    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lobortis felis semper, semper turpis vitae, ornare nulla. Sed faucibus nisl magna, vitae venenatis dolor consectetur ut. Proin vehicula accumsan lobortis. Nulla non arcu vel lorem sodales dignissim id ut nulla. Phasellus ornare et ex in posuere. Morbi ligula turpis, facilisis nec mauris a, accumsan lacinia orci.",
-    submittedBy: "Robot Submitter",
+    location: "Coral Springs Resort in Hurricane, UT",
+    image: "https://upload.wikimedia.org/wikipedia/commons/9/9e/Angels_Landing.jpg",
+    body: "<li>15 Minutes from St. George Airport. 2 Hours from Las Vegas Airport. </li><li>Accommodations are 1, 2 and 3 bedroom suites</li><li>With fully stocked kitchens, and can be linked together with shared patio space.</li><li>We could likely get an entire floor of suites.</li><li>Pool and spa on site</li><li> Golf, Hiking or horse tours through Zion National Park</li><li>Zip Lining, Shopping, dining and movies in St. George</li><li>Boating/ fishing, ATV sand dunes</li><li>Wakeboard park</li>",
+    url: "https://coralspringsresort.com/",
+    submittedBy: "Francie",
     },
     {
-    location: "Pinecone Valley",
-    image: "http://i.imgur.com/3PL1Nag.jpg",
-    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lobortis felis semper, semper turpis vitae, ornare nulla. Sed faucibus nisl magna, vitae venenatis dolor consectetur ut. Proin vehicula accumsan lobortis. Nulla non arcu vel lorem sodales dignissim id ut nulla. Phasellus ornare et ex in posuere. Morbi ligula turpis, facilisis nec mauris a, accumsan lacinia orci.",
-    submittedBy: "Robot Camper"
+    location: "Jackson Hole, WY",
+    image: "https://upload.wikimedia.org/wikipedia/commons/d/d0/Barns_grand_tetons.jpg",
+    body: "<li>Multiple home rentals within same community.</li><li>Fly into Jackson Hole Airport Accommodations are 4 and 5 bedroom lodges</li><li>We would book multiple within walking distance in the same community. </li><li>Fishing, Hiking, Golf, Rafting, Mountain bike tours</li><li>Shopping, dining and movies in Jackson Hole</li><li>Grand Teton National Park</li><li>90 Minutes from Yellowstone (another 45 min. to Old Faithful)</li>",
+    submittedBy: "Francie",
+    url: "https://www.jacksonhole.com/"
     }
 ];
 
