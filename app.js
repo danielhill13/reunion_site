@@ -55,7 +55,7 @@ app.post("/destinations", function(req, res){
 })
 //SHOW
 app.get("/destinations/:id", function(req, res){
-    Destination.findById(req.params.id, function(err, foundDestination){
+    Destination.findById(req.params.id).populate("comments").exec(function(err, foundDestination){
         if(err){
             console.log(err);
             res.redirect("/destinations");
@@ -122,6 +122,7 @@ app.post("/destinations/:id/comments", function(req, res){
             res.redirect("/destinations");
         } else {
             //create new comment
+            // req.body.comment = req.sanitize(req.body.comment);
             Comment.create(req.body.comment, function(err, comment){
                 if(err){
                     console.log(err);
