@@ -2,26 +2,20 @@ var mongoose = require("mongoose");
 var Destination = require("./models/destination");
 var Comment = require("./models/comment");
 var data = [{
-    name: "Cloud's Rest",
+    location: "Cloud's Rest",
     image: "http://i.imgur.com/RW0Xv7G.jpg",
     body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lobortis felis semper, semper turpis vitae, ornare nulla. Sed faucibus nisl magna, vitae venenatis dolor consectetur ut. Proin vehicula accumsan lobortis. Nulla non arcu vel lorem sodales dignissim id ut nulla. Phasellus ornare et ex in posuere. Morbi ligula turpis, facilisis nec mauris a, accumsan lacinia orci.",
     submittedBy: "Robot Submitter",
     },
     {
-    name: "Pinecone Valley",
-    image: "http://i.imgur.com/3PL1Nag.jpg",
-    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lobortis felis semper, semper turpis vitae, ornare nulla. Sed faucibus nisl magna, vitae venenatis dolor consectetur ut. Proin vehicula accumsan lobortis. Nulla non arcu vel lorem sodales dignissim id ut nulla. Phasellus ornare et ex in posuere. Morbi ligula turpis, facilisis nec mauris a, accumsan lacinia orci.",
-    submittedBy: "Robot Camper"
-    },
-    {
-    name: "Pinecone Valley",
+    location: "Pinecone Valley",
     image: "http://i.imgur.com/3PL1Nag.jpg",
     body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lobortis felis semper, semper turpis vitae, ornare nulla. Sed faucibus nisl magna, vitae venenatis dolor consectetur ut. Proin vehicula accumsan lobortis. Nulla non arcu vel lorem sodales dignissim id ut nulla. Phasellus ornare et ex in posuere. Morbi ligula turpis, facilisis nec mauris a, accumsan lacinia orci.",
     submittedBy: "Robot Camper"
     }
 ];
 
-function seedDB(){
+function killDB(){
     //Remove all destinations
     Destination.remove({}, function(err){
         if(err){
@@ -37,9 +31,12 @@ function seedDB(){
         console.log("Removed all comments");
         }
     });
+};
+
+function seedDB(){
     //Add some destinations
     data.forEach(function(seed){
-    Destination.create(seed, function(err, campground){
+    Destination.create(seed, function(err, destination){
         if(err){
             console.log(err);
         }else{
@@ -62,4 +59,8 @@ function seedDB(){
     });
 };
 
-module.exports = seedDB;
+
+module.exports = {
+    seedDB,
+    killDB
+}

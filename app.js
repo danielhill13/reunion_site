@@ -6,7 +6,7 @@ var express = require('express'),
     expressSanitizer = require('express-sanitizer')
     Destination = require("./models/destination"),
     Comment = require("./models/comment"),
-    seedDB = require("./seeds");
+    refreshDB = require("./seeds");
 
 
 
@@ -21,10 +21,13 @@ app.use(expressSanitizer());
 app.get("/", function(req, res){
     res.render('index');
 });
-seedDB();
+
+refreshDB.killDB();
+// refreshDB.seedDB();
 
 
-//DESTINATIONS AND ALL THE RESTful ROUTES
+//DESTINATIONS ROUTES
+//INDEX
 app.get("/destinations", function(req, res){
     Destination.find({}, function(err, destinations){
         if(err){
@@ -54,6 +57,7 @@ app.post("/destinations", function(req, res){
 app.get("/destinations/:id", function(req, res){
     Destination.findById(req.params.id, function(err, foundDestination){
         if(err){
+            console.log(err);
             res.redirect("/destinations");
         }else {
             res.render("destinations/show", {destination: foundDestination});
@@ -96,6 +100,39 @@ app.delete("/destinations/:id", function(req, res){
         }
     })
 });
+
+//=================
+// COMMENT ROUTES
+//=================
+//NEW
+app.get("/destinations/:id/comments/new", function(req, res){
+    Destination.findById(req.params.id, function(err, destination){
+        if(err){
+            console.log(err);
+        }else {
+    res.render("comments/new", {destination: destination});
+        }
+    })
+});
+//CREATE
+app.post("/destinations/:id/comments", function(req, res){
+    Destination.findById(req.params.id, function(err, destination){
+        if(err){
+            console.log(err);
+            res.redirect("/destinations");
+        } else {
+            //create new comment
+            Comment.create(req.body.comment, function(err, comment){
+                if(err){
+                    console.log(err);
+                } else {
+                    destination.comments.push(comment);
+                    destination.save();
+                    res.redirect("/destinations/" + destination._id);
+    }})}})})
+
+
+
 
 app.get("/event-details", function(req, res){
     res.render('event-details');

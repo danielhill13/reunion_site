@@ -8,7 +8,7 @@
             <p><%- destination.body %></p>
             </div>
             <div class="content">
-                <a href="<%= destination.url %>">Learn more...</a>
+                <a href="<%= destination.url %>">Destination Website</a>
             <div class="content">
                 <p>Submitted by: <%= destination.submittedBy %></p>
             </div>
@@ -18,14 +18,34 @@
                 <span> <%= destination.created.toDateString() %></span>
             </div>
 
-            <a class="ui orange basic button" href="/destinations/<%= destination._id %>/edit">Edit Post</a>
-            <form id="delete" action="/destinations/<%= destination._id %>?_method=DELETE" method="POST">
-                <button class="ui red basic button">Delete Post</button>
-            </form>
+
         </div>
     </div>
-   
-
 </div>
 
-<% include ../partials/footer %>
+<div class="ui comments">
+    <h3 class="ui dividing header">Comments</h3>
+  <% destination.comments.forEach(function(comment){ %>
+  <div class="comment">
+    <div class="content">
+      <a class="author"><%= comment.author %></a>
+      <div class="metadata">
+        <div class="date"><%= comment.createdDate %>></div>
+      </div>
+      <div class="text">
+        <%= comment.text %>
+      </div>
+    </div>
+  </div>
+  <% console.log(comment) %>
+  <% }) %>
+  <br>
+    <a class="ui primary small button" href="/destinations/<%= destination._id %>/comments/new">
+     Add Comment
+    </a>
+</div>
+</div>
+<a class="ui orange basic button" href="/destinations/<%= destination._id %>/edit">Edit Post</a>
+<form id="delete" action="/destinations/<%= destination._id %>?_method=DELETE" method="POST">
+    <button class="ui red basic button">Delete Post</button>
+</form>

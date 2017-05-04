@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 
+
 var destinationSchema = new mongoose.Schema({
     location: String,
     image: String,
