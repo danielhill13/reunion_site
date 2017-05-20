@@ -12,15 +12,32 @@
         <title>Family Reunion</title>
     </head>
 <body>
-<div id="navbar" class="ui stackable inverted menu ">
+<div id="navbar" class="ui stackable secondary menu ">
     <a href="/" class="active item">Home</a>
     <a href="/destinations" class="item">Destinations</a>
     <a href="/event-details" class="item">Event Details</a>
     <a href="/photos" class="item">Photos</a>
-    <a href="/guestbook"class="item">Guest Book</a>
-    <a href="/rsvp" class="item">RSVP</a>
-    <a href="/login" class="item">Login</a>
-    <a href="/signup" class="item">Sign Up</a>
-    <!--NEED TO ADD A MORE DROPDOWN NFOR ALL OPTIONS -->
+    <div class="right menu">
+            <%if (!currentUser){ %>
+            <a class="item" href="/login">Login</a>
+            <a class="item" href="/signup">Sign Up</a>
+            <% }else { %>
+            <a class="item" >Signed in as <%= currentUser.username %></a>
+            <a class="item" href="/logout">Logout</a>
+            <% } %>
+    </div>
   </div>
-</div>
+
+ <div class="container">
+     <% if(error && error.length > 0){ %>
+ <div class="ui negative message" role="alert">
+    <%= error %>
+ </div>
+ <% } else if(success && success.length > 0) {%>
+ <div class="ui success message" role="alert">
+    <%= success %>
+ </div>
+ <% } %>
+ </div>
+
+    <!--NEED TO ADD A MORE DROPDOWN NFOR ALL OPTIONS -->

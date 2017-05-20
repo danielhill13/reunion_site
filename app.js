@@ -58,12 +58,6 @@ app.get("/event-details", function(req, res){
 app.get("/photos", function(req, res){
     res.render('photos');
 });
-app.get("/guestbook", function(req, res){
-    res.render('guestbook');
-});
-app.get("/rsvp", function(req, res){
-    res.render('rsvp');
-});
 app.get("/login", function(req, res){
     res.render('login');
 });
@@ -75,6 +69,6 @@ app.use(indexRoutes);
 app.use("/destinations", destinationRoutes);
 app.use("/destinations/:id/comments", commentRoutes);
 
-app.listen(3000, function(req, res){
+app.listen(process.env.PORT, process.env.IP, function(req, res){
     console.log("Family Server Started");
 });

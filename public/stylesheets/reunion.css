@@ -33,7 +33,9 @@ i.icon {
 #delete {
     display: inline;
 }
-
+.delete-form {
+    display: inline;
+}
 #footer {
     position : absolute;
     bottom : 0;
