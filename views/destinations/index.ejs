@@ -1,23 +1,24 @@
 <% include ../partials/header %>
 
-<h1>Destinations Page</h1>
+<div class ="ui main text container segment">
+<h1>Destination Options</h1>
 
-<a href="/destinations/new" class="item">New Post</a>
-
+<div class="ui divider"></div>
 
 <% destinations.forEach(function(destination){ %>
     <div>
         <h2><%=destination.location%></h2>
         <img class="ui rounded image" src="<%=destination.image%>"><br>
-        <p><%- destination.body %>
-        <a href="/destinations/<%= destination._id %>">More Info</a></p>
+        <p><%- destination.body %></p>
+        <p><a href="/destinations/<%= destination._id %>">More Info</a></p>
         <a href="<%=destination.url%>"><%= destination.url %></a>
         <p>Submitted by: <%= destination.submittedBy %></p>
     </div>
     <div class="ui divider"></div>
 
 <%}) %>
-
+</div>
+<a href="/destinations/new" class="item">New Post</a>
 
 <%include ../partials/footer %>
 

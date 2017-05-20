@@ -6,8 +6,14 @@ var destinationSchema = new mongoose.Schema({
     image: String,
     url: String,
     body: String,
-    submittedBy: String,
     created: {type: Date, default: Date.now},
+    author: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+            },
+            username: String
+    },
     comments: [
         {
             type: mongoose.Schema.Types.ObjectId,

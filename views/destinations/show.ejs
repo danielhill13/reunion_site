@@ -10,9 +10,9 @@
             <div class="content">
                 <a href="<%= destination.url %>">Destination Website</a>
             <div class="content">
-                <p>Submitted by: <%= destination.submittedBy %></p>
+                <p>Submitted by: <%= destination.author %></p>
             </div>
-            <img class="ui centered rounded image" src="<%= destination.image %>" alt="<%=destination.location %> Image">
+            <img class="ui centered rounded image" src="<%= destination.image %>">
 
             <div class="content">
                 <span> <%= destination.created.toDateString() %></span>
@@ -28,13 +28,22 @@
   <% destination.comments.forEach(function(comment){ %>
   <div class="comment">
     <div class="content">
-      <a class="author"><%= comment.author %></a>
+      <a class="author"><%= comment.author.username %></a>
       <div class="metadata">
         <div class="date"><%= comment.createdDate %>></div>
       </div>
       <div class="text">
         <%= comment.text %>
       </div>
+    <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+        <a class=""
+            href="/destinations/<%= destination._id %>/comments/<%= comment._id %>/edit">
+            Edit
+        </a>
+        <form class="delete-form" action="/destinations/<%= destination._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+        <input  type="submit" class="" value="Delete">
+        </form>
+    <% } %>
     </div>
   </div>
   <% }) %>
@@ -43,8 +52,8 @@
      Add Comment
     </a>
 </div>
-</div>
 <a class="ui orange basic button" href="/destinations/<%= destination._id %>/edit">Edit Post</a>
 <form id="delete" action="/destinations/<%= destination._id %>?_method=DELETE" method="POST">
     <button class="ui red basic button">Delete Post</button>
 </form>
+</div>
