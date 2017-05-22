@@ -10,8 +10,6 @@ var express             = require('express'),
     Destination         = require("./models/destination"),
     Comment             = require("./models/comment"),
     User                = require("./models/user");
-    // refreshDB           = require("./seeds");
-
 
 //Routes Requires
 var commentRoutes = require("./routes/comments"),
