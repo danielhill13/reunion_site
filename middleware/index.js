@@ -10,7 +10,7 @@ middlewareObj.checkDestinationOwnership = function (req, res, next){
             req.flash("error", "Issue finding destination in database")
             res.redirect("/destinations");
         } else{
-            if(foundDestination.author.id.equals(req.user._id)) {
+            if(foundDestination.author.id.equals(req.user._id) || req.user._id.equals(LOCALADMIN)) {
                 next();
             } else{
                 req.flash("error", "You can only edit your own destinations")
@@ -31,7 +31,7 @@ middlewareObj.checkCommentOwnership = function(req, res, next){
             req.flash("error", "Issue finding comment in database");
             res.redirect("back");
         } else{
-            if(foundComment.author.id.equals(req.user._id)) {
+            if(foundComment.author.id.equals(req.user._id) || req.user._id.equals(LOCALADMIN)) {
                 next();
             } else{
                 req.flash("error", "You can only edit your own comments");
