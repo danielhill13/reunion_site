@@ -12,7 +12,7 @@
         <p><%- destination.body %></p>
         <p><a href="/destinations/<%= destination._id %>">More Info</a></p>
         <a href="<%=destination.url%>"><%= destination.url %></a>
-        <p>Submitted by: <%= destination.submittedBy %></p>
+        <p>Submitted by: <%= destination.author.username %></p>
     </div>
     <div class="ui divider"></div>
 
