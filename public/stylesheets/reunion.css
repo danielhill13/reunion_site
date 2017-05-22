@@ -6,11 +6,6 @@ body {
     background: linear-gradient(to right, #A7BFE8, #6190E8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
-
-img {
-    max-width: 500px;
-    max-height: 400px;
-}
 i.icon {
     font-size: 2em;
 }
@@ -29,11 +24,70 @@ i.icon {
 .container.main {
     background: #fefbf7;
 }
-
 #delete {
     display: inline;
 }
 .delete-form {
+    display: inline;
+}
+#footerdiv {
+    position : relative;
+    left: 0px;
+    bottom : 0px;
+    width: 100%;
+}
+
+.mySlides > img {
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    max-height: 100%;
+    
+    
+}
+
+#introparagraph {
+    font-size: 1em;
+}
+#carouselcontainer{
+    padding: 0;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+.container.main {
+    margin-top: 3.0em; 
+}
+.carouselbtnleft {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+}
+.carouselbtnright {
+    position: absolute;
+    top: 50%;
+    right: 0%;
+}
+.carouselcaptionbtm{
+    position: absolute;
+    bottom: 8%;
+    left: 5%;
+    right: 5%;
+    color: white;
+    font-size: 2em;
+    text-shadow: 0px 0px 2px #000, -1px -1px #000, 1px 1px #000;
+    line-height: 1.1em
+}
+.carouselcaptionbtm a {
+    color: #47a9ff;
+}
+#takesurveycarousel {
+    width: 100%;
+    max-width: 100%;
+    max-height: 90%;
+    display: block;
+}
+#delete {
     display: inline;
 }
 #footer {
