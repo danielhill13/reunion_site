@@ -1,0 +1,24 @@
+<div id="navbar" class="ui stackable borderless menu ">
+    <a href="/" class="item">Home</a>
+    <a href="/destinations" class="item">Destinations</a>
+    <div class="ui simple dropdown item">
+      More
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        <div class="item"><a href="/event-details">Events & Activities</a></div>
+        <div class="item">Discussion</div>
+        <div class="item">Photos</div>
+      </div>
+    </div>
+    <div class="right menu">
+            <%if (!currentUser){ %>
+            <a class="item" href="/login">Login</a>
+            <a class="item" href="/signup">Sign Up</a>
+            <% }else { %>
+            <a class="item" >Signed in as <%= currentUser.username %></a>
+            <a class="item" href="/logout">Logout</a>
+            <% } %>
+    </div>
+  </div>
+
+
