@@ -3,23 +3,17 @@
 <% include ./partials/flashes %>
 <h1>Survey 2 - June 2017</h1>
 
-<form class="ui form">
- <div class="fields">   
-    <div class="field">
-        <label>First Name</label>
-        <input type="text" name="first-name" placeholder="First Name">
-    </div>
-    <div class="field">
-        <label>Last Name</label>
-        <input type="text" name="last-name" placeholder="Last Name">
-    </div>
-</div>
-  <button class="ui button" type="submit">Submit</button>
-</form>
-
-<div class="ui form">
-  <div class=" six wide field">
-    <label>Activities</label>
+<form>
+  <input type="text" name="first-name" placeholder="First Name"><br>
+  <input type="text" name="last-name" placeholder="Last Name"><br>
+  <textarea name="additionalnames" value="additionalnames" rows="5" cols="40"placeholder="Please add any others you're including in this reply'"></textarea>
+  <input type="radio" name="attending" value="yes">Yes<br>
+  <input type="radio" name="attending" value="no">No<br>
+  <input type="radio" name="attending" value="other">Unsure<br>
+  <textarea name="attendingreply" value="attendingreply" rows="5" cols="40"placeholder="If unsure, please share why..."></textarea>
+  <div class=" eight wide field">
+    <label>Activities</label><br>
+    <p><em>Hold Control+Click to select multiple</em></p>
     <select multiple="">
       <option value="pool">Lounging by the pool</option>
       <option value="holf">Golf</option>
@@ -28,6 +22,9 @@
       <option value="zip">Zip Lining</option>
       <option value="boat">Boating/Fishing</option>
       <option value="wakeboard">Wakeboard Park</option>
-    </select>
+    </select><br><br>
   </div>
+  <textarea name="moreactivities" value="moreactivities" rows="5" cols="40"placeholder="Any other activities?"></textarea><br>
+  <button class="ui button" type="submit">Submit</button>
+</form>
 <% include ./partials/footer %>
