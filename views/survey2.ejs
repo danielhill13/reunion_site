@@ -1,0 +1,33 @@
+<% include ./partials/header %>
+<% include ./partials/navbar %>
+<% include ./partials/flashes %>
+<h1>Survey 2 - June 2017</h1>
+
+<form class="ui form">
+ <div class="fields">   
+    <div class="field">
+        <label>First Name</label>
+        <input type="text" name="first-name" placeholder="First Name">
+    </div>
+    <div class="field">
+        <label>Last Name</label>
+        <input type="text" name="last-name" placeholder="Last Name">
+    </div>
+</div>
+  <button class="ui button" type="submit">Submit</button>
+</form>
+
+<div class="ui form">
+  <div class=" six wide field">
+    <label>Activities</label>
+    <select multiple="">
+      <option value="pool">Lounging by the pool</option>
+      <option value="holf">Golf</option>
+      <option value="hiking">Hiking</option>
+      <option value="horse">Horse Riding</option>
+      <option value="zip">Zip Lining</option>
+      <option value="boat">Boating/Fishing</option>
+      <option value="wakeboard">Wakeboard Park</option>
+    </select>
+  </div>
+<% include ./partials/footer %>
