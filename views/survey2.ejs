@@ -2,21 +2,41 @@
 <% include ./partials/navbar %>
 <% include ./partials/flashes %>
 <h1>Survey 2 - June 2017</h1>
+Dates: June 26 - July 1, 2018<br>
+Coral Springs Resort, Hurricane, Utah<br><br>
 
-<form>
-  <input type="text" name="first-name" placeholder="First Name"><br>
-  <input type="text" name="last-name" placeholder="Last Name"><br>
-  <textarea name="additionalnames" value="additionalnames" rows="5" cols="40"placeholder="Please add any others you're including in this reply'"></textarea>
-  <input type="radio" name="attending" value="yes">Yes<br>
-  <input type="radio" name="attending" value="no">No<br>
-  <input type="radio" name="attending" value="other">Unsure<br>
-  <textarea name="attendingreply" value="attendingreply" rows="5" cols="40"placeholder="If unsure, please share why..."></textarea>
-  <div class=" eight wide field">
+<form class="ui form" action="/survey2" method="POST">
+<div class="field">
+  <input type="text" name="survey2[firstname]" placeholder="First Name">
+</div> 
+<div class="field">
+  <input type="text" name="survey2[lastname]" placeholder="Last Name">
+</div> 
+<div class="field">
+  <label>Who else will be joining you?</label>
+  <textarea name="survey2[addlnames]" value="additionalnames" rows="5" cols="40"placeholder="Spouses, Kids, pets"></textarea>
+</div>
+<div class="grouped fields">
+  <label>Will you be able to attend?</label>
+  <div class="field">
+  <input type="radio" name="survey2[attending]" value="yes" tabindex="0" class="hidden">Yes
+  </div>
+  <div class="field">
+  <input type="radio" name="survey2[attending]" value="no">No
+  </div>
+  <div class="field">
+  <input type="radio" name="survey2[attending]" value="other">Unsure
+  </div>
+</div>
+<div class=" field">
+  <textarea name="survey2[attendingreply]" value="attendingreply" rows="5" cols="40"placeholder="If unsure, please share why..."></textarea>
+</div>
+  <div class="twelve wide field">
     <label>Activities</label><br>
-    <p><em>Hold Control+Click to select multiple</em></p>
-    <select multiple="">
+    <p><em>Hold Control+Click to select multiple activities</em></p>
+    <select id="activities" name="survey2[activities]" multiple="">
       <option value="pool">Lounging by the pool</option>
-      <option value="holf">Golf</option>
+      <option value="golf">Golf</option>
       <option value="hiking">Hiking</option>
       <option value="horse">Horse Riding</option>
       <option value="zip">Zip Lining</option>
@@ -24,7 +44,9 @@
       <option value="wakeboard">Wakeboard Park</option>
     </select><br><br>
   </div>
-  <textarea name="moreactivities" value="moreactivities" rows="5" cols="40"placeholder="Any other activities?"></textarea><br>
+<div class=" field">
+  <textarea name="survey2[moreactivities]" value="moreactivities" rows="5" cols="40"placeholder="Any other activities?"></textarea><br>
+</div>
   <button class="ui button" type="submit">Submit</button>
 </form>
 <% include ./partials/footer %>

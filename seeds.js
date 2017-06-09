@@ -1,6 +1,7 @@
 var mongoose = require("mongoose");
 var Destination = require("./models/destination");
-var Comment = require("./models/comment");
+var Comment = require("./models/comment"),
+var Survey2 = require("./models/survey2");
 var data = [{
     location: "Coral Springs Resort in Hurricane, UT",
     image: "http://i.imgur.com/U6CMIgl.jpg",
@@ -16,24 +17,15 @@ var data = [{
     url: "https://www.jacksonhole.com/"
     }
 ];
-
-function killDB(){
-    //Remove all destinations
-    Destination.remove({}, function(err){
-        if(err){
-            console.log(err)
-        } else{
-        console.log("Removed all destinations");
-        }
-    })
-    Comment.remove({}, function(err){
-        if(err){
-            console.log(err)
-        } else{
-        console.log("Removed all comments");
-        }
-    });
-};
+var sampleSurvey2 = [{
+    firstname: "danny test",
+    lastname: "hill test",
+    addlnames: "paula and daniela",
+    attending: "yes",
+    attendingreply: "can't wait!",
+    activities: ["hiking", "horse"],
+    moreactivities: "rollerblading"
+}]
 
 function seedDB(){
     //Add some destinations
@@ -58,6 +50,23 @@ function seedDB(){
             });
         }
     });
+    });
+};
+function killDB(){
+    //Remove all destinations
+    Destination.remove({}, function(err){
+        if(err){
+            console.log(err)
+        } else{
+        console.log("Removed all destinations");
+        }
+    })
+    Comment.remove({}, function(err){
+        if(err){
+            console.log(err)
+        } else{
+        console.log("Removed all comments");
+        }
     });
 };
 

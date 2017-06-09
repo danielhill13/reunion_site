@@ -17,9 +17,9 @@ router.get("/", function(req, res){
 });
 
 //NEW
-router.get("/new", middleware.isLoggedIn, function(req, res){
-    res.render("destinations/new");
-});
+// router.get("/new", middleware.isLoggedIn, function(req, res){
+//     res.render("destinations/new");
+// });
 //CREATE
 router.post("/", middleware.isLoggedIn, function(req, res){
     // req.body.destination.body = req.sanitize(req.body.destination.body);
@@ -52,21 +52,21 @@ router.get("/:id", function(req, res){
     })
 });
 //EDIT - takes me to edit destinations page
-router.get("/:id/edit", middleware.checkDestinationOwnership, function(req, res){
-    Destination.findById(req.params.id, function(err, foundDestination){
-        res.render("destinations/edit", {destination: foundDestination});
-        });
-    });
+// router.get("/:id/edit", middleware.checkDestinationOwnership, function(req, res){
+//     Destination.findById(req.params.id, function(err, foundDestination){
+//         res.render("destinations/edit", {destination: foundDestination});
+//         });
+//     });
 //UPDATE
-router.put("/:id", middleware.checkDestinationOwnership, function(req, res){
-    Destination.findByIdAndUpdate(req.params.id, req.body.destination, function(err, updatedDestination){
-        if(err){
-            res.redirect("/destinations");
-        } else {
-            res.redirect("/destinations/" + req.params.id);
-        }
-    });
-});
+// router.put("/:id", middleware.checkDestinationOwnership, function(req, res){
+//     Destination.findByIdAndUpdate(req.params.id, req.body.destination, function(err, updatedDestination){
+//         if(err){
+//             res.redirect("/destinations");
+//         } else {
+//             res.redirect("/destinations/" + req.params.id);
+//         }
+//     });
+// });
 //DESTROY
 // router.delete("/:id", middleware.checkDestinationOwnership, function(req, res){
 //     Destination.findByIdAndRemove(req.params.id, function(err){

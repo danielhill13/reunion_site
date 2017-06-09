@@ -9,12 +9,14 @@ var express             = require('express'),
     expressSanitizer    = require('express-sanitizer')
     Destination         = require("./models/destination"),
     Comment             = require("./models/comment"),
-    User                = require("./models/user");
+    User                = require("./models/user"),
+    Survey2             = require("./models/survey2");
 
 //Routes Requires
 var commentRoutes = require("./routes/comments"),
     destinationRoutes = require("./routes/destinations"),
-    indexRoutes = require("./routes/index");
+    indexRoutes = require("./routes/index"),
+    survey2Routes = require("./routes/survey2");
 
 //CONFIG
 var dbUrl = process.env.DATABASEURL || "mongodb://localhost/reunion_site";
@@ -68,7 +70,8 @@ app.get("/survey2", function(req, res){
 
 app.use(indexRoutes);
 app.use("/destinations", destinationRoutes);
-app.use("/destinations/:id/comments", commentRoutes);
+app.use("/destinations/:id/comments", commentRoutes),
+app.use("/survey2", survey2Routes);
 
 app.listen(process.env.PORT, process.env.IP, function(req, res){
     console.log("Family Server Started");
