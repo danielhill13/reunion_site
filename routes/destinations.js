@@ -68,15 +68,15 @@ router.put("/:id", middleware.checkDestinationOwnership, function(req, res){
     });
 });
 //DESTROY
-router.delete("/:id", middleware.checkDestinationOwnership, function(req, res){
-    Destination.findByIdAndRemove(req.params.id, function(err){
-        if(err){
-            console.log("Issue deleting object");
-            res.redirect("/destinations");
-        } else{
-            res.redirect("/destinations");
-        }
-    })
-});
+// router.delete("/:id", middleware.checkDestinationOwnership, function(req, res){
+//     Destination.findByIdAndRemove(req.params.id, function(err){
+//         if(err){
+//             console.log("Issue deleting object");
+//             res.redirect("/destinations");
+//         } else{
+//             res.redirect("/destinations");
+//         }
+//     })
+// });
 
 module.exports = router;
