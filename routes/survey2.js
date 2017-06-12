@@ -5,25 +5,30 @@ var Comment = require("../models/comment");
 var Survey2 = require("../models/survey2");
 var middleware = require("../middleware");
 
-//NEED TO UPDATE TO BE SURVEY2 SPECIFIC. FIGURE OUT {survey2: survey2 nonsense}
-router.get("/new",middleware.isLoggedIn, function(req, res){
-    Survey2.findById(req.params.id, function(err, survey2){
+//INDEX
+router.get("/", middleware.isLoggedIn, function(req, res){
+    Survey2.find({}, function(err, survey2){
         if(err){
             console.log(err);
-        }else {
-    res.render("survey2", {survey2: survey2});
+        } else {
+            res.render("survey2/index", {survey2: survey2});
         }
-    })
+    });
+});
+
+//NEW
+router.get("/new", function(req, res){
+    res.render("survey2/new");
 });
 //CREATE
 router.post("/", function(req, res){
-    var firstname = req.sanitize(req.body.survey2.firstname);
-    var lastname = req.sanitize(req.body.survey2.lastname);
-    var addlnames = req.sanitize(req.body.survey2.addlnames);
-    var attending = req.sanitize(req.body.survey2.attending);
-    var attendingreply = req.sanitize(req.body.survey2.attendingreply);
-    var activities = req.sanitize(req.body.survey2.activities);
-    var moreactivities = req.sanitize(req.body.survey2.moreactivities);
+    var firstname       = req.sanitize(req.body.survey2.firstname);
+    var lastname        = req.sanitize(req.body.survey2.lastname);
+    var addlnames       = req.sanitize(req.body.survey2.addlnames);
+    var attending       = req.sanitize(req.body.survey2.attending);
+    var attendingreply  = req.sanitize(req.body.survey2.attendingreply);
+    var activities      = req.sanitize(req.body.survey2.activities);
+    var moreactivities  = req.sanitize(req.body.survey2.moreactivities);
 
     var newSurvey2 = {firstname: firstname, lastname: lastname, addlnames: addlnames, attending: attending, attendingreply: attendingreply, activities: activities, moreactivities: moreactivities}
     Survey2.create(newSurvey2, function(err, newSurvey2){

@@ -64,9 +64,9 @@ app.get("/login", function(req, res){
 app.get("/signup", function(req, res){
     res.render('register');
 });
-app.get("/survey2", function(req, res){
-    res.render('survey2');
-})
+// app.get("/survey2", function(req, res){
+//     res.render('survey2');
+// })
 
 app.use(indexRoutes);
 app.use("/destinations", destinationRoutes);
