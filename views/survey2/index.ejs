@@ -1,0 +1,35 @@
+<% include ../partials/header %>
+<% include ../partials/navbar %>
+<% include ../partials/flashes %>
+
+<div class ="ui main text container segment">
+<h1>Survey 2 Results</h1>
+
+<div class="ui divider"></div>
+
+
+
+<% survey2.forEach(function(survey2){ %>
+    <div>
+        Name: <%=survey2.firstname%> <%=survey2.lastname%><br>
+        Addl Family: <%=survey2.addlnames%><br>
+        Attending? <%=survey2.attending %> <br>
+        Comments: <%=survey2.attendingreply%><br>
+        Desired Activities:  <%=survey2.activities%><br>
+        Additional Activity Suggestions: <%=survey2.moreactivities%><br>
+    </div>
+    <div class="ui divider"></div>
+
+<%}) %>
+
+    <!--firstname: String,
+    lastname: String,
+    addlnames: String,
+    attending: String, //radio button yes/no/unsure
+    attendingreply: String,
+    // created: {type: Date, default: Date.now},
+    activities: Array,
+    moreactivities: String-->
+
+<%include ../partials/footer %>
+
