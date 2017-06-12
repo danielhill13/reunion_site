@@ -13,10 +13,11 @@ var express             = require('express'),
     Survey2             = require("./models/survey2");
 
 //Routes Requires
-var commentRoutes = require("./routes/comments"),
-    destinationRoutes = require("./routes/destinations"),
-    indexRoutes = require("./routes/index"),
-    survey2Routes = require("./routes/survey2");
+var commentRoutes       = require("./routes/comments"),
+    destinationRoutes   = require("./routes/destinations"),
+    indexRoutes         = require("./routes/index"),
+    survey2Routes       = require("./routes/survey2"),
+    forumRoutes         = require("./routes/forum");
 
 //CONFIG
 var dbUrl = process.env.DATABASEURL || "mongodb://localhost/reunion_site";
@@ -71,7 +72,8 @@ app.get("/signup", function(req, res){
 app.use(indexRoutes);
 app.use("/destinations", destinationRoutes);
 app.use("/destinations/:id/comments", commentRoutes),
-app.use("/survey2", survey2Routes);
+app.use("/survey2", survey2Routes),
+app.use("/forum", forumRoutes);
 
 app.listen(process.env.PORT, process.env.IP, function(req, res){
     console.log("Family Server Started");

@@ -40,36 +40,32 @@ router.post("/", function(req, res){
         }
     })
 })
-//EDIT
-// router.get("/:comment_id/edit", middleware.checkCommentOwnership, function(req, res){
-//     Comment.findById(req.params.comment_id, function(err, foundComment){
+//EDIT - takes me to edit survey page
+// router.get("/:id/edit", middleware.checkDestinationOwnership, function(req, res){
+//     Destination.findById(req.params.id, function(err, foundDestination){
+//         res.render("destinations/edit", {destination: foundDestination});
+//         });
+//     });
+//UPDATE
+// router.put("/:id", middleware.checkDestinationOwnership, function(req, res){
+//     Destination.findByIdAndUpdate(req.params.id, req.body.destination, function(err, updatedDestination){
 //         if(err){
-//             res.redirect("back");
-//         } else {
-//     res.render("comments/edit", {destination_id: req.params.id, comment: foundComment});
-//         }
-//     })
-// })
-// //UPDATE
-// router.put("/:comment_id", middleware.checkCommentOwnership, function(req, res){
-//     Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, updatedComment){
-//         if(err){
-//             res.redirect("back");
+//             res.redirect("/destinations");
 //         } else {
 //             res.redirect("/destinations/" + req.params.id);
 //         }
-//     })
-
-// })
-// //DELETE
-// router.delete("/:comment_id",middleware.checkCommentOwnership, function(req, res){
-//     Comment.findByIdAndRemove(req.params.comment_id, function(err){
+//     });
+// });
+//DESTROY
+// router.delete("/:id", middleware.checkDestinationOwnership, function(req, res){
+//     Destination.findByIdAndRemove(req.params.id, function(err){
 //         if(err){
-//             res.redirect("back")
-//         } else {
-//             res.redirect("/destinations/" + req.params.id);
+//             console.log("Issue deleting object");
+//             res.redirect("/destinations");
+//         } else{
+//             res.redirect("/destinations");
 //         }
 //     })
-// })
+// });
 
 module.exports = router;
