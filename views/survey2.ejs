@@ -4,7 +4,7 @@
 <h1>Survey 2 - June 2017</h1>
 Dates: June 26 - July 1, 2018<br>
 Coral Springs Resort, Hurricane, Utah<br><br>
-
+<div class="ui container segment">
 <form class="ui form" action="/survey2" method="POST">
 <div class="field">
   <input type="text" name="survey2[firstname]" placeholder="First Name">
@@ -13,9 +13,11 @@ Coral Springs Resort, Hurricane, Utah<br><br>
   <input type="text" name="survey2[lastname]" placeholder="Last Name">
 </div> 
 <div class="field">
+<div class="ui divider"></div>
   <label>Who else will be joining you?</label>
   <textarea name="survey2[addlnames]" value="additionalnames" rows="5" cols="40"placeholder="Spouses, Kids, pets"></textarea>
 </div>
+<div class="ui divider"></div>
 <div class="grouped fields">
   <label>Will you be able to attend?</label>
   <div class="field">
@@ -28,12 +30,14 @@ Coral Springs Resort, Hurricane, Utah<br><br>
   <input type="radio" name="survey2[attending]" value="other">Unsure
   </div>
 </div>
+<div class="ui divider"></div>
 <div class=" field">
   <textarea name="survey2[attendingreply]" value="attendingreply" rows="5" cols="40"placeholder="If unsure, please share why..."></textarea>
 </div>
-  <div class="twelve wide field">
+<div class="ui divider"></div>
+  <div class=" field">
     <label>Activities</label><br>
-    <p><em>Hold Control+Click to select multiple activities</em></p>
+    <p><em>Laptop/Desktop: Hold Control+Click to select multiple</em></p>
     <select id="activities" name="survey2[activities]" multiple="">
       <option value="pool">Lounging by the pool</option>
       <option value="golf">Golf</option>
@@ -44,9 +48,11 @@ Coral Springs Resort, Hurricane, Utah<br><br>
       <option value="wakeboard">Wakeboard Park</option>
     </select><br><br>
   </div>
+<div class="ui divider"></div>
 <div class=" field">
   <textarea name="survey2[moreactivities]" value="moreactivities" rows="5" cols="40"placeholder="Any other activities?"></textarea><br>
 </div>
   <button class="ui button" type="submit">Submit</button>
 </form>
+</div>
 <% include ./partials/footer %>
