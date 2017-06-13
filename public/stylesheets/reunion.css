@@ -13,8 +13,14 @@ i.icon {
     font-size: 2em;
 }
 
+img {
+    max-width: 100%;
+    overflow: hidden;
+}
 #navbar .item {
     color: black;
+}
+
 }
 #introparagraph {
     font-size: 1em;
