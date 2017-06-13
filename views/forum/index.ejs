@@ -6,9 +6,10 @@
 
 <% forum.forEach(function(forum){ %>
     <div>
-        <h2><%=forum.title%></h2>
+        <h2><a href="/forum/<%= forum._id %>"><%=forum.title%></a></h2>
+
         <p><%- forum.body %></p>
-        <p>Submitted by: <%= forum.author.username %></p>
+        <p>Submitted by: <%= forum.author.username %> on <%= forum.created.toDateString() %></p>
     </div>
     <div class="ui divider"></div>
 

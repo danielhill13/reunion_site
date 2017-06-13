@@ -1,0 +1,19 @@
+<% include ../partials/header %>
+<% include ../partials/navbar %>
+<% include ../partials/flashes %>
+<div class ="ui main text container segment">
+    <div class="ui huge header"><%= forum.title %></div>
+    <div class="ui top attached">
+        <div class="item">
+            <div class="description">
+            <p><%- forum.body %></p>
+            </div>
+                <p>Submitted by: <%= forum.author.username %></p>
+            <div class="content">
+                <span> <%= forum.created.toDateString() %></span>
+            </div>
+
+
+        </div>
+    </div>
+</div>
