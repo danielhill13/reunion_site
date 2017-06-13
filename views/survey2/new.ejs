@@ -5,21 +5,24 @@
 Dates: June 26 - July 1, 2018<br>
 Coral Springs Resort, Hurricane, Utah<br><br>
 <div class="ui container segment">
+    <p><em>These answers are for planning purposes and do not commit you to anything!</em></p>
 <form class="ui form" action="/survey2" method="POST">
+<div class="grouped fields">
 <div class="field">
   <input type="text" name="survey2[firstname]" placeholder="First Name">
 </div> 
 <div class="field">
   <input type="text" name="survey2[lastname]" placeholder="Last Name">
 </div> 
-<div class="field">
+</div>
+<!--<div class="field">
 <div class="ui divider"></div>
   <label>Who else will be joining you?</label>
   <textarea name="survey2[addlnames]" value="additionalnames" rows="5" cols="40"placeholder="Spouses, Kids, pets"></textarea>
-</div>
+</div>-->
 <div class="ui divider"></div>
 <div class="grouped fields">
-  <label>Will you be able to attend?</label>
+  <label>Do you plan on attending?</label>
   <div class="field">
   <input type="radio" name="survey2[attending]" value="yes" tabindex="0" class="hidden">Yes
   </div>
@@ -32,11 +35,11 @@ Coral Springs Resort, Hurricane, Utah<br><br>
 </div>
 <div class="ui divider"></div>
 <div class=" field">
-  <textarea name="survey2[attendingreply]" value="attendingreply" rows="5" cols="40"placeholder="If unsure, please share why..."></textarea>
+  <textarea name="survey2[attendingreply]" value="attendingreply" rows="5" cols="40"placeholder="If unsure, what would help you decide?"></textarea>
 </div>
 <div class="ui divider"></div>
   <div class=" field">
-    <label>Activities - Select as many as you like!</label><br>
+    <label>Activities of Interest</label>
     <p><em>Laptop/Desktop: Hold Control+Click to select multiple</em></p>
     <select id="activities" name="survey2[activities]" multiple="">
       <option value="pool">Lounging by the pool</option>
@@ -46,12 +49,13 @@ Coral Springs Resort, Hurricane, Utah<br><br>
       <option value="zip">Zip Lining</option>
       <option value="boat">Boating/Fishing</option>
       <option value="wakeboard">Wakeboard Park</option>
-    </select><br><br>
+    </select>
+    <p><em>This is just for planning purposes and does not commit you to anything</em></p>
   </div>
 <div class="ui divider"></div>
 <div class=" field">
-  <label>Add any other activities you'd like, or comments in general</label>
-  <textarea name="survey2[moreactivities]" value="moreactivities" rows="5" cols="40"placeholder="Any other activities?"></textarea><br>
+    <label>Additional Activities or comments</label>
+  <textarea name="survey2[moreactivities]" value="moreactivities" rows="5" cols="40"placeholder="Any other activities you'd like to add?"></textarea><br>
 </div>
   <button class="ui button" type="submit">Submit</button>
 </form>
