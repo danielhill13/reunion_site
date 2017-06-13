@@ -10,7 +10,8 @@ var express             = require('express'),
     Destination         = require("./models/destination"),
     Comment             = require("./models/comment"),
     User                = require("./models/user"),
-    Survey2             = require("./models/survey2");
+    Survey2             = require("./models/survey2"),
+    forumRoutes         = require("./models/forum");
 
 //Routes Requires
 var commentRoutes       = require("./routes/comments"),

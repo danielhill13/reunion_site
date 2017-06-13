@@ -8,11 +8,11 @@ var express = require("express"),
 //Forum ROUTES
 //INDEX
 router.get("/", function(req, res){
-    Forum.find({}, function(err, forums){
+    Forum.find({}, function(err, forum){
         if(err){
             console.log(err);
         } else {
-            res.render("forum/index", {forums: forums});
+            res.render("forum/index", {forum: forum});
         }
     });
 });
@@ -40,16 +40,16 @@ router.post("/", middleware.isLoggedIn, function(req, res){
     })
 })
 // //SHOW
-router.get("/:id", function(req, res){
-    Forum.findById(req.params.id).populate("comments").exec(function(err, foundForum){
-        if(err){
-            console.log(err);
-            res.redirect("/forum");
-        }else {
-            res.render("forum/show", {destination: foundForum});
-        }
-    })
-});
+// router.get("/:id", function(req, res){
+//     Forum.findById(req.params.id).populate("comments").exec(function(err, foundForum){
+//         if(err){
+//             console.log(err);
+//             res.redirect("/forum");
+//         }else {
+//             res.render("forum/show", {forum: foundForum});
+//         }
+//     })
+// });
 //EDIT - takes me to edit destinations page
 // router.get("/:id/edit", middleware.checkDestinationOwnership, function(req, res){
 //     Destination.findById(req.params.id, function(err, foundDestination){

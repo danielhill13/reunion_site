@@ -4,6 +4,17 @@
 <h1> Family Discussion Forum</h1>
 <p>Discuss activities, excursions, accomodations, etc here!</p>
 
+<% forum.forEach(function(forum){ %>
+    <div>
+        <h2><%=forum.title%></h2>
+        <p><%- forum.body %></p>
+        <p>Submitted by: <%= forum.author.username %></p>
+    </div>
+    <div class="ui divider"></div>
+
+<%}) %>
+</div>
+
 <h3><a href="/forum/new">New Topic</a></h3>
 <%include ../partials/footer %>
 
