@@ -1,0 +1,28 @@
+<% include ../partials/header %>
+<% include ../partials/navbar %>
+<% include ../partials/flashes %>
+<!--<div class ="ui main text container segment">
+    <div class="ui huge header">Edit Destination: <%= destination.location %></div>
+     Have to use method override npm to set ?_method=PUT to convert POST to PUT
+    <form class="ui form" action="/destinations/<%=destination._id %>?_method=PUT" method="POST">
+    <div class="field">
+        <label>Location</label>
+        <input type="text"name="destination[location]" value="<%= destination.location %>">
+    </div>
+    <div class="field">
+        <label>Image</label>
+        <input type="text" name="destination[image]" value="<%= destination.image %>">
+    </div>
+    <div class="field">
+        <label>URL</label>
+        <input type="text" name="destination[url]" value="<%= destination.url %>">
+    </div>
+    <div class="field">
+        <label>Details...why should the reunion be here?</label>
+        <textarea name="destination[body]"><%= destination.body %></textarea>
+    </div>
+    <input class="ui blue basic big button" type="submit">
+    </form>
+</div>-->
+
+<% include ../partials/footer %>

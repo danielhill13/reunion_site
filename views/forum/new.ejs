@@ -1,0 +1,20 @@
+<% include ../partials/header %>
+<% include ../partials/navbar %>
+<% include ../partials/flashes %>
+
+<div class ="ui main text container segment">
+    <div class="ui huge header">New Forum Post</div>
+    <form class="ui form" action="/forum" method="POST">
+    <div class="field">
+        <label>Topic</label>
+        <input type="text" name="forum[title]" placeholder="title/topic">
+    </div>
+    <div class="field">
+        <label>Post</label>
+        <textarea name="forum[body]" placeholder="write your post here..."></textarea>
+    </div>
+    <input class="ui blue basic big button" type="submit">
+    </form>
+</div>
+
+<% include ../partials/footer %>
