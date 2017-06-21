@@ -50,11 +50,17 @@ router.get("/profileupdate", middleware.isLoggedIn, function(req, res){
     res.render("profileupdate", {user: foundUser});
     })
 })
-// router.get("/:id/edit", middleware.checkDestinationOwnership, function(req, res){
-//     Destination.findById(req.params.id, function(err, foundDestination){
-//         res.render("destinations/edit", {destination: foundDestination});
-//       
+
 //UPDATE profile
+router.put("/profileupdate", middleware.isLoggedIn, function(req, res){
+    User.findByIdAndUpdate(req.params.id, req.body.user, function(err, updatedUser){
+        if(err){
+            res.redirect("/profile");
+        } else {
+            res.redirect("/");
+        }
+    })
+})
 // router.put("/:id", middleware.checkDestinationOwnership, function(req, res){
 //     Destination.findByIdAndUpdate(req.params.id, req.body.destination, function(err, updatedDestination){
 //         if(err){
