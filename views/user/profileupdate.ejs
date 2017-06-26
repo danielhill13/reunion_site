@@ -1,9 +1,9 @@
-<% include ./partials/header %>
-<% include ./partials/navbar %>
-<% include ./partials/flashes %>
+<% include ../partials/header %>
+<% include ../partials/navbar %>
+<% include ../partials/flashes %>
 <h1>Update your profile</h1>
 
-<form class="ui form" action="" method="">
+<form class="ui form" action="/profileupdate/<%=currentUser._id %>?_method=PUT" method="POST">
     <div class="field">
     <input type="text" name="user[email]" value="<%= currentUser.email || 'no email on file - add one here!' %>">
         </div>   
@@ -14,4 +14,4 @@
     <input class="ui blue basic big button" type="submit">
 </form>
 
-<% include ./partials/footer %>
+<% include ../partials/footer %>
