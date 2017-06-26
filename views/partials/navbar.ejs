@@ -13,7 +13,7 @@
     <div class="right menu">
             <%if (!currentUser){ %>
             <a class="item" href="/login">Login</a>
-            <a class="item" href="/signup">Sign Up</a>
+            <a class="item" href="/register">Sign Up</a>
             <% }else { %>
             <a class="item" href="/profile">Signed in as <%= currentUser.username %></a>
             <a class="item" href="/logout">Logout</a>
