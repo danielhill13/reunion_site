@@ -7,7 +7,7 @@
 <div style="width: 30%; margin: 25px auto;">
     <form action="/destinations/<%= destination_id%>/comments/<%= comment._id %>?_method=PUT" method="POST">
         <div class="">
-            <input class="" type="text" name="comment[text]" value="<%= comment.text %>">
+            <input class="" type="textarea" name="comment[text]" value="<%= comment.text %>">
             </div>
         <div class="">    
             <button class="">Submit</button>
