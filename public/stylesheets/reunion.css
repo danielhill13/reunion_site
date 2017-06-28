@@ -28,6 +28,9 @@ img {
 .container.main {
     background: #fefbf7;
 }
+.right {
+    overflow: hidden;
+    }
 #delete {
     display: inline;
 }
