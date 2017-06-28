@@ -1,6 +1,5 @@
 
 body {
-    margin: 0.66%;
     background: #6190E8;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #A7BFE8, #6190E8);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #A7BFE8, #6190E8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -40,57 +39,16 @@ img {
     left: 0;
     bottom : 0;
 }
-
-.mySlides > img {
-    width: 100%;
-    display: block;
-    overflow: hidden;
-    max-height: 100%;
-    
-    
+#homeheader {
+    width: 99%;
+    margin-left: 0.3em!important;
+    margin-right: 0.3em!important;
 }
 
-#introparagraph {
-    font-size: 1em;
-}
-#carouselcontainer{
-    padding: 0;
-    border: none;
-    position: relative;
-    overflow: hidden;
-}
 .container.main {
-    margin-top: 3.0em; 
+    margin-top: 1.0em; 
 }
-.carouselbtnleft {
-    position: absolute;
-    top: 50%;
-    left: 0%;
-}
-.carouselbtnright {
-    position: absolute;
-    top: 50%;
-    right: 0%;
-}
-.carouselcaptionbtm{
-    position: absolute;
-    bottom: 8%;
-    left: 5%;
-    right: 5%;
-    color: white;
-    font-size: 2em;
-    text-shadow: 0px 0px 2px #000, -1px -1px #000, 1px 1px #000;
-    line-height: 1.1em
-}
-.carouselcaptionbtm a {
-    color: #47a9ff;
-}
-/*#takesurveycarousel {
-    width: 100%;
-    max-width: 100%;
-    max-height: 90%;
-    display: block;
-}*/
+
 #delete {
     display: inline;
 }
