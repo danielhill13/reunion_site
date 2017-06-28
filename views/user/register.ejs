@@ -1,12 +1,13 @@
-<% include ./partials/header %>
-<% include ./partials/navbar %>
-<% include ./partials/flashes %>
+<% include ../partials/header %>
+<% include ../partials/navbar %>
+<% include ../partials/flashes %>
 <h1>Sign up!</h1>
 
 <form action="/register" method="POST">
+    <input type="text" name="email" placeholder="email">
     <input type="text" name="username" placeholder="username">
     <input type="password" name="password" placeholder="password">
     <button>Submit</button>
 </form>
 
-<% include ./partials/footer %>
+<% include ../partials/footer %>

@@ -62,15 +62,7 @@ app.get("/event-details", function(req, res){
 app.get("/photos", function(req, res){
     res.render('photos');
 });
-app.get("/login", function(req, res){
-    res.render('login');
-});
-app.get("/signup", function(req, res){
-    res.render('register');
-});
-// app.get("/survey2", function(req, res){
-//     res.render('survey2');
-// })
+
 
 app.use(indexRoutes);
 app.use("/destinations", destinationRoutes);

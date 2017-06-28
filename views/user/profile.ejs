@@ -1,0 +1,22 @@
+<% include ../partials/header %>
+<% include ../partials/navbar %>
+<% include ../partials/flashes %>
+<h1>Profile</h1>
+
+<%if (!currentUser){ %>
+    <p>You need to log in to see your profile details</p>
+    <p><a href="/login">Login Here</a></p>
+<% }else { %>
+<p>Username: <%= currentUser.username %></p>
+<p>Email: <%= currentUser.email %></p>
+<% } %>
+
+<a href="/profileupdate">Update your profile</a>
+
+
+
+
+
+
+
+<% include ../partials/footer %>
