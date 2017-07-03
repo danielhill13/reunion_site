@@ -41,7 +41,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
 })
 // //SHOW
 router.get("/:id", function(req, res){
-    Forum.findById(req.params.id).exec(function(err, foundForum){
+    Forum.findById(req.params.id).populate("comments").exec(function(err, foundForum){
         if(err){
             console.log(err);
             res.redirect("/forum");

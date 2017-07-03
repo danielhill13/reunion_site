@@ -1,19 +1,45 @@
 <% include ../partials/header %>
 <% include ../partials/navbar %>
 <% include ../partials/flashes %>
-<div class ="ui main text container segment">
+<div class ="ui container segment" id="homeheader">
     <div class="ui huge header"><%= forum.title %></div>
-    <div class="ui top attached">
+    <div class="ui divider"></div>
+
         <div class="item">
             <div class="description">
             <p><%- forum.body %></p>
             </div>
-                <p>Submitted by: <%= forum.author.username %></p>
-            <div class="content">
-                <span> <%= forum.created.toDateString() %></span>
-            </div>
-
-
+                <p>Submitted by: <%= forum.author.username %> on 
+                <span><%= forum.created.toDateString() %></span></p> 
         </div>
+</div>
+
+<div class="ui comments">
+    <h3 class="ui dividing header">Comments</h3>
+  <% forum.comments.forEach(function(forumcomment){ %>
+  <div class="comment">
+    <div class="content">
+      <a class="author"><%= comment.author.username %></a>
+      <div class="metadata">
+        <div class="date"><%= comment.createdDate.toDateString() %></div>
+      </div>
+      <div class="text">
+        <%= comment.text %>
+      </div>
+    <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+        <a class="orange ui button mini"
+            href="/forum/<%= forum._id %>/comments/<%= comment._id %>/edit">
+            Edit
+        </a>
+        <form class="delete-form" action="/destinations/<%= destination._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+        <input class="negative ui button mini" type="submit"  value="Delete">
+        </form>
+    <% } %>
     </div>
+  </div>
+  <% }) %>
+  <br>
+    <a class="ui primary small button" href="/forum/<%= forum._id %>/comments/new">
+     Add Comment
+    </a>
 </div>
