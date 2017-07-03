@@ -11,7 +11,7 @@ router.get("/new",middleware.isLoggedIn, function(req, res){
         if(err){
             console.log(err);
         }else {
-    res.render("forumcomment/new", {forum: forum});
+    res.render("forum/newcomment", {forum: forum});
         }
     })
 });
@@ -31,8 +31,8 @@ router.post("/",  middleware.isLoggedIn, function(req, res){
                     comment.author.id = req.user._id;
                     comment.author.username = req.user.username;
                     comment.save();
-                    destination.comments.push(comment);
-                    destination.save();
+                    forum.comments.push(comment);
+                    forum.save();
                     console.log(comment);
                     res.redirect("/forum/" + forum._id);
     }})}})})
