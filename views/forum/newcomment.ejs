@@ -5,7 +5,7 @@
     <div class="row">
 <h1 style="text-align: center;">Add New Comment to topic: <%= forum.title %></h1>
 <div style="width: 30%; margin: 25px auto;">
-    <form action="/destinations/<%= destination._id%>/comments" method="POST">
+    <form action="/forum/<%= forum._id%>/comments" method="POST">
         <div class="">
             <input class="" type="text" name="comment[text]" placeholder="text">
             </div>
@@ -13,7 +13,7 @@
             <button class="">Submit</button>
         </div>
 </form>
-<a href="/destinations">Back to Discussion Page</a>
+<a href="/forum">Back to Discussion Page</a>
 </div>
     </div>
 </div>
