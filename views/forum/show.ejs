@@ -18,17 +18,17 @@
 
 <div class="ui comments">
     <h3 class="ui dividing header">Comments</h3>
-  <% forum.comments.forEach(function(forumcomment){ %>
+  <% forum.forumcomments.forEach(function(forumcomment){ %>
   <div class="comment">
     <div class="content">
-      <a class="author"><%= comment.author.username %></a>
+      <a class="author"><%= forumcomment.author.username %></a>
       <div class="metadata">
-        <div class="date"><%= comment.createdDate.toDateString() %></div>
+        <div class="date"><%= forumcomment.createdDate.toDateString() %></div>
       </div>
       <div class="text">
-        <%= comment.text %>
+        <%= forumcomment.text %>
       </div>
-    <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+    <% if(currentUser && forumcomment.author.id.equals(currentUser._id)){ %>
         <a class="orange ui button mini"
             href="/forum/<%= forum._id %>/comments/<%= comment._id %>/edit">
             Edit

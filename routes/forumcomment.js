@@ -4,7 +4,7 @@ var middleware = require("../middleware");
 var Forum = require("../models/forum");
 var ForumComment = require("../models/forumcomment");
 
-router.get("/new",middleware.isLoggedIn, function(req, res){
+router.get("/new", middleware.isLoggedIn,function(req, res){
     Forum.findById(req.params.id, function(err, forum){
         if(err){
             console.log(err);
