@@ -10,7 +10,8 @@ router.get("/register", function(req, res){
 })
 //handle signup logic
 router.post("/register", function(req, res){
-    var newUser = new User({username: req.body.username, email: req.body.email});
+    var lowercaseUser = req.body.username.toLowerCase();
+    var newUser = new User({username: lowercaseUser, email: req.body.email});
     User.register(newUser, req.body.password, function(err, user){
         if(err){
            req.flash("error", err.message);
