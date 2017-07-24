@@ -47,7 +47,9 @@ img {
     margin-left: 0.3em!important;
     margin-right: 0.3em!important;
 }
-
+.lower {
+   text-transform: lowercase;
+}
 .container.main {
     margin-top: 1.0em; 
 }

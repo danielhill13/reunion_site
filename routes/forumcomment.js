@@ -1,17 +1,15 @@
 var express = require("express");
 var router = express.Router({mergeParams: true});
-var Destination = require("../models/destination");
-var Comment = require("../models/comment");
 var middleware = require("../middleware");
 var Forum = require("../models/forum");
 var ForumComment = require("../models/forumcomment");
 
-router.get("/new",middleware.isLoggedIn, function(req, res){
+router.get("/new", middleware.isLoggedIn,function(req, res){
     Forum.findById(req.params.id, function(err, forum){
         if(err){
             console.log(err);
         }else {
-    res.render("forumcomment/new", {forum: forum});
+    res.render("forum/newcomment", {forum: forum});
         }
     })
 });
@@ -31,8 +29,8 @@ router.post("/",  middleware.isLoggedIn, function(req, res){
                     comment.author.id = req.user._id;
                     comment.author.username = req.user.username;
                     comment.save();
-                    destination.comments.push(comment);
-                    destination.save();
+                    forum.comments.push(comment);
+                    forum.save();
                     console.log(comment);
                     res.redirect("/forum/" + forum._id);
     }})}})})
