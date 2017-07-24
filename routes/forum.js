@@ -2,7 +2,8 @@ var express = require("express"),
     router  = express.Router(),
     Destination = require("../models/destination"),
     middleware = require("../middleware"),
-    Forum       = require("../models/forum");
+    Forum       = require("../models/forum"),
+    ForumComment       = require("../models/forumcomment");
 
 
 //Forum ROUTES
@@ -41,7 +42,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
 })
 // //SHOW
 router.get("/:id", function(req, res){
-    Forum.findById(req.params.id).populate("forumcomment").exec(function(err, foundForum){
+    Forum.findById(req.params.id).populate("comments").exec(function(err, foundForum){
         if(err){
             console.log(err);
             res.redirect("/forum");

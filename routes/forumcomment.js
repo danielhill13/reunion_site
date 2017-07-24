@@ -22,10 +22,11 @@ router.post("/",  middleware.isLoggedIn, function(req, res){
         } else {
             //create new comment
             // req.body.comment = req.sanitize(req.body.comment);
-            ForumComment.create(req.body.comment, function(err, comment){
+            ForumComment.create(req.body.forumcomment, function(err, comment){
                 if(err){
                     console.log(err);
                 } else {
+                    comment.text = req.body.forumComment.text;
                     comment.author.id = req.user._id;
                     comment.author.username = req.user.username;
                     comment.save();

@@ -18,22 +18,23 @@
 
 <div class="ui comments">
     <h3 class="ui dividing header">Comments</h3>
-  <% forum.forumcomments.forEach(function(forumcomment){ %>
+  <% forum.comments.forEach(function(forumComment){ %>
   <div class="comment">
     <div class="content">
-      <a class="author"><%= forumcomment.author.username %></a>
+      <a class="author"><%= forumComment.author.username %></a>
       <div class="metadata">
-        <div class="date"><%= forumcomment.createdDate.toDateString() %></div>
+        <div class="date"><%= forumComment.createdDate.toDateString() %>
+        </div>
       </div>
       <div class="text">
-        <%= forumcomment.text %>
+        <%= forumComment.text %>
       </div>
-    <% if(currentUser && forumcomment.author.id.equals(currentUser._id)){ %>
+    <% if(currentUser && forumComment.author.id.equals(currentUser._id)){ %>
         <a class="orange ui button mini"
-            href="/forum/<%= forum._id %>/comments/<%= comment._id %>/edit">
+            href="/forum/<%= forum._id %>/comments/<%= forumComment._id %>/edit">
             Edit
         </a>
-        <form class="delete-form" action="/destinations/<%= destination._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+        <form class="delete-form" action="/forum/<%= forum._id %>/comments/<%= forumComment._id %>?_method=DELETE" method="POST">
         <input class="negative ui button mini" type="submit"  value="Delete">
         </form>
     <% } %>
