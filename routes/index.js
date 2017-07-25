@@ -64,6 +64,16 @@ router.put("/profileupdate/:id", middleware.isLoggedIn, function(req, res){
         }
     })
 })
+
+//FORGOT PASSWORD
+router.get('/forgotpassword', function(req, res){
+    res.render('user/forgotpassword');
+})
+
+//RECEIVE EMAIL ADDRESS
+// router.post('/forgotpassword')
+
+
 // router.put("/:id", middleware.checkDestinationOwnership, function(req, res){
 //     Destination.findByIdAndUpdate(req.params.id, req.body.destination, function(err, updatedDestination){
 //         if(err){
