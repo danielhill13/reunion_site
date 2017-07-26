@@ -2,18 +2,23 @@ var express             = require('express'),
     app                 = express(),
     mongoose            = require("mongoose"),
     bodyParser          = require("body-parser"),
+    cookieParser        = require('cookie-parser'),
     flash               = require("connect-flash"),
     passport            = require("passport"),
     LocalStrategy       = require("passport-local"),
     methodOverride      = require("method-override"),
-    expressSanitizer    = require('express-sanitizer')
+    expressSanitizer    = require('express-sanitizer'),
+    nodemailer          = require('nodemailer'),
+    Mailgun             = require('mailgun-js'),
+    async               = require('async'),
+    bcrypt              = require('bcrypt-nodejs'),
+    crypto              = require('crypto'),
     Destination         = require("./models/destination"),
     Comment             = require("./models/comment"),
     User                = require("./models/user"),
     Survey2             = require("./models/survey2"),
     forumComment        = require("./models/forumcomment"),
     forumRoutes         = require("./models/forum");
-
 //Routes Requires
 var commentRoutes       = require("./routes/comments"),
     destinationRoutes   = require("./routes/destinations"),
@@ -32,7 +37,7 @@ app.use(express.static('public'));
 app.use(methodOverride("_method"));
 app.use(expressSanitizer());
 app.use(flash());
-
+app.use(cookieParser());
 //PASSPORT CONFIG
 app.use(require("express-session")({
     secret: "this is a secret thing for my passport family reunion site",
