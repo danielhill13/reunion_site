@@ -73,72 +73,24 @@ router.get('/forgotpassword', function(req, res){
 
 //RECEIVE EMAIL ADDRESS
 router.post('/forgotpassword', function(req, res, next){
-
+    var token = Math.random() * 7534095;
+    User.findOne({username: req.body.username }, function(err, user){
+        if (!user) {
+            req.flash('error', 'No account with that email address exists.');
+            res.redirect('/');
+        } else {
+        user.resetPasswordToken = token;
+        user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+        user.save();
+        res.redirect('/');
+        }
+    })
 })
+//NEED TO BUILD AND SEND EMAIL HERE
 
-// router.post('/forgotpassword', function(req, res, next) {
-//   async.waterfall([
-//     function(done) {
-//       crypto.randomBytes(20, function(err, buf) {
-//         var token = buf.toString('hex');
-//         done(err, token);
-//       });
-//     },
-//     function(token, done) {
-//       User.findOne({ username: req.body.username }, function(err, user) {
-//         if (!user) {
-//           req.flash('error', 'No account with that email address exists.');
-//           return res.redirect('/forgotpassword');
-//         }
-
-//         user.resetPasswordToken = token;
-//         user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
-
-//         user.save(function(err) {
-//           done(err, token, user);
-//         });
-//       });
-//     },
-//     function(token, user, done) {
-//       var smtpTransport = nodemailer.createTransport('SMTP', {
-//         service: 'SendGrid',
-//         auth: {
-//           user: '!!! YOUR SENDGRID USERNAME !!!',
-//           pass: '!!! YOUR SENDGRID PASSWORD !!!'
-//         }
-//       });
-//       var mailOptions = {
-//         to: user.email,
-//         from: 'passwordreset@demo.com',
-//         subject: 'Node.js Password Reset',
-//         text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
-//           'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-//           'http://' + req.headers.host + '/reset/' + token + '\n\n' +
-//           'If you did not request this, please ignore this email and your password will remain unchanged.\n'
-//       };
-//       smtpTransport.sendMail(mailOptions, function(err) {
-//         req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
-//         done(err, 'done');
-//       });
-//     }
-//   ], function(err) {
-//     if (err) return next(err);
-//     res.redirect('/forgot');
-//   });
-// });
+//NEED TO ADD ROUTES FOR ACTUAL PASSWORD RESET
 
 
 
-
-
-// router.put("/:id", middleware.checkDestinationOwnership, function(req, res){
-//     Destination.findByIdAndUpdate(req.params.id, req.body.destination, function(err, updatedDestination){
-//         if(err){
-//             res.redirect("/destinations");
-//         } else {
-//             res.redirect("/destinations/" + req.params.id);
-//         }
-//     });
-// });
 
 module.exports = router;
