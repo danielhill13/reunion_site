@@ -12,11 +12,14 @@
 <% survey2.forEach(function(survey2){ %>
     <div>
         Name: <%=survey2.firstname%> <%=survey2.lastname%><br>
-        Addl Family: <%=survey2.addlnames%><br>
-        Attending? <%=survey2.attending %> <br>
+        Attending? <%if (survey2.attending === 'other') {%>
+        unsure
+        <%} else { %>
+        <%=survey2.attending %>
+        <%}%><br>
         Comments: <%=survey2.attendingreply%><br>
-        Desired Activities:  <%=survey2.activities%><br>
-        Additional Activity Suggestions: <%=survey2.moreactivities%><br>
+        Activities:  <%=survey2.activities.join(', ');%><br>
+        Suggestions: <%=survey2.moreactivities%><br>
     </div>
     <div class="ui divider"></div>
 

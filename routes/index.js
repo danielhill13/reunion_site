@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require("passport");
 var User = require("../models/user");
 var middleware = require("../middleware/index");
+var async               = require('async');
 
 //show register form
 router.get("/register", function(req, res){
@@ -64,14 +65,32 @@ router.put("/profileupdate/:id", middleware.isLoggedIn, function(req, res){
         }
     })
 })
-// router.put("/:id", middleware.checkDestinationOwnership, function(req, res){
-//     Destination.findByIdAndUpdate(req.params.id, req.body.destination, function(err, updatedDestination){
-//         if(err){
-//             res.redirect("/destinations");
-//         } else {
-//             res.redirect("/destinations/" + req.params.id);
-//         }
-//     });
-// });
+
+//FORGOT PASSWORD
+router.get('/forgotpassword', function(req, res){
+    res.render('user/forgotpassword');
+})
+
+//RECEIVE EMAIL ADDRESS
+router.post('/forgotpassword', function(req, res, next){
+    var token = Math.random() * 7534095;
+    User.findOne({username: req.body.username }, function(err, user){
+        if (!user) {
+            req.flash('error', 'No account with that email address exists.');
+            res.redirect('/');
+        } else {
+        user.resetPasswordToken = token;
+        user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+        user.save();
+        res.redirect('/');
+        }
+    })
+})
+//NEED TO BUILD AND SEND EMAIL HERE
+
+//NEED TO ADD ROUTES FOR ACTUAL PASSWORD RESET
+
+
+
 
 module.exports = router;
