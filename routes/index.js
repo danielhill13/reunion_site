@@ -101,8 +101,8 @@ router.post('/forgotpassword', function(req, res, next) {
       var smtpTransport = nodemailer.createTransport({
         service: 'Mailgun',
         auth: {
-          user: 'PASSWORD',
-          pass: 'PASSWORD'
+          user: '',
+          pass: ''
         }
       });
       var mailOptions = {
@@ -127,63 +127,63 @@ router.post('/forgotpassword', function(req, res, next) {
 });
 
 
-//GET PW RESET PAGE
-// router.get('/reset/:token', function(req, res) {
-//   User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
-//     if (!user) {
-//       req.flash('error', 'Password reset token is invalid or has expired.');
-//       return res.redirect('/forgotpassword');
-//     }
-//     res.render('user/reset', {
-//       user: req.user
-//     });
-//   });
-// });
+// GET PW RESET PAGE
+router.get('/reset/:token', function(req, res) {
+  User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+    if (!user) {
+      req.flash('error', 'Password reset token is invalid or has expired.');
+      return res.redirect('/forgotpassword');
+    }
+    res.render('user/reset', {
+      user: req.user
+    });
+  });
+});
 
 //RESET PW POST ROUTE
-// app.post('/reset/:token', function(req, res) {
-//   async.waterfall([
-//     function(done) {
-//       User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
-//         if (!user) {
-//           req.flash('error', 'Password reset token is invalid or has expired.');
-//           return res.redirect('back');
-//         }
+router.post('/reset/:token', function(req, res) {
+  async.waterfall([
+    function(done) {
+      User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+        if (!user) {
+          req.flash('error', 'Password reset token is invalid or has expired.');
+          return res.redirect('back');
+        }
 
-//         user.password = req.body.password;
-//         user.resetPasswordToken = undefined;
-//         user.resetPasswordExpires = undefined;
+        user.password = req.body.password;
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpires = undefined;
 
-//         user.save(function(err) {
-//           req.logIn(user, function(err) {
-//             done(err, user);
-//           });
-//         });
-//       });
-//     },
-//     function(user, done) {
-//       var smtpTransport = nodemailer.createTransport('SMTP', {
-//         service: 'SendGrid',
-//         auth: {
-//           user: '!!! YOUR SENDGRID USERNAME !!!',
-//           pass: '!!! YOUR SENDGRID PASSWORD !!!'
-//         }
-//       });
-//       var mailOptions = {
-//         to: user.email,
-//         from: 'passwordreset@demo.com',
-//         subject: 'Your password has been changed',
-//         text: 'Hello,\n\n' +
-//           'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
-//       };
-//       smtpTransport.sendMail(mailOptions, function(err) {
-//         req.flash('success', 'Success! Your password has been changed.');
-//         done(err);
-//       });
-//     }
-//   ], function(err) {
-//     res.redirect('/');
-//   });
-// });
+        user.save(function(err) {
+          req.logIn(user, function(err) {
+            done(err, user);
+          });
+        });
+      });
+    },
+    function(user, done) {
+      var smtpTransport = nodemailer.createTransport({
+        service: 'Mailgun',
+        auth: {
+          user: '',
+          pass: ''
+        }
+      });
+      var mailOptions = {
+        to: user.username,
+        from: 'passwordreset@hillfamilyreunion.us',
+        subject: 'Your password has been changed',
+        text: 'Hello,\n\n' +
+          'This is a confirmation that the password for your account ' + user.username + ' has just been changed.\n'
+      };
+      smtpTransport.sendMail(mailOptions, function(err) {
+        req.flash('success', 'Success! Your password has been changed.');
+        done(err);
+      });
+    }
+  ], function(err) {
+    res.redirect('/');
+  });
+});
 
 module.exports = router;
