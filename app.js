@@ -13,6 +13,7 @@ var express             = require('express'),
     async               = require('async'),
     bcrypt              = require('bcrypt-nodejs'),
     crypto              = require('crypto'),
+    dotenv              = require('dotenv'),
     Destination         = require("./models/destination"),
     Comment             = require("./models/comment"),
     User                = require("./models/user"),
@@ -27,6 +28,9 @@ var commentRoutes       = require("./routes/comments"),
     forumRoutes         = require("./routes/forum");
     forumCommentRoutes  = require("./routes/forumcomment");
 
+// Load environment variables from .env file
+dotenv.load();
+
 //CONFIG
 var dbUrl = process.env.DATABASEURL || "mongodb://localhost/reunion_site";
 mongoose.connect(dbUrl);
@@ -40,7 +44,7 @@ app.use(flash());
 app.use(cookieParser());
 //PASSPORT CONFIG
 app.use(require("express-session")({
-    secret: "this is a secret thing for my passport family reunion site",
+    secret: process.env.SESSION_SECRET || "this is a secret thing for my passport family reunion site",
     resave: false,
     saveUninitialized: false
 }))

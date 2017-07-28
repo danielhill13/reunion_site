@@ -73,23 +73,6 @@ router.get('/forgotpassword', function(req, res){
     res.render('user/forgotpassword');
 })
 
-//Generate token route
-//Need to use crypto generation instead of Math.random
-// router.post('/forgotpassword', function(req, res, next){
-//     var token = Math.random() * 7534095;
-//     User.findOne({username: req.body.username }, function(err, user){
-//         if (!user) {
-//             req.flash('error', 'No account with that email address exists.');
-//             res.redirect('/');
-//         } else {
-//         user.resetPasswordToken = token;
-//         user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
-//         user.save();
-//         res.redirect('/');
-//         }
-//     })
-// })
-
 
 router.post('/forgotpassword', function(req, res, next) {
   async.waterfall([
@@ -114,38 +97,93 @@ router.post('/forgotpassword', function(req, res, next) {
         });
       });
     },
-    // function(token, user, done) {
-    //   var smtpTransport = nodemailer.createTransport('SMTP', {
-    //     service: 'Mailgun',
-    //     auth: {
-    //       user: '!!! YOUR SENDGRID USERNAME !!!',
-    //       pass: '!!! YOUR SENDGRID PASSWORD !!!'
-    //     }
-    //   });
-    //   var mailOptions = {
-    //     to: user.email,
-    //     from: 'passwordreset@demo.com',
-    //     subject: 'Node.js Password Reset',
-    //     text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
-    //       'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-    //       'http://' + req.headers.host + '/reset/' + token + '\n\n' +
-    //       'If you did not request this, please ignore this email and your password will remain unchanged.\n'
-    //   };
-    //   smtpTransport.sendMail(mailOptions, function(err) {
-    //     req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
-    //     done(err, 'done');
-    //   });
-    // }
+    function(token, user, done) {
+      var smtpTransport = nodemailer.createTransport({
+        service: 'Mailgun',
+        auth: {
+          user: 'PASSWORD',
+          pass: 'PASSWORD'
+        }
+      });
+      var mailOptions = {
+        to: user.username,
+        from: 'passwordreset@hillfamilyreunion.us',
+        subject: 'Reunion Site Password Reset',
+        text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+          'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+          'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+          'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+      };
+      smtpTransport.sendMail(mailOptions, function(err) {
+        req.flash('success', 'An e-mail has been sent to ' + user.username + ' with further instructions.');
+        done(err, 'done');
+        res.redirect('/');
+      });
+    }
   ], function(err) {
     if (err) return next(err);
     res.redirect('/forgotpassword');
   });
 });
-//NEED TO BUILD AND SEND EMAIL HERE
-
-//NEED TO ADD ROUTES FOR ACTUAL PASSWORD RESET
 
 
+//GET PW RESET PAGE
+// router.get('/reset/:token', function(req, res) {
+//   User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+//     if (!user) {
+//       req.flash('error', 'Password reset token is invalid or has expired.');
+//       return res.redirect('/forgotpassword');
+//     }
+//     res.render('user/reset', {
+//       user: req.user
+//     });
+//   });
+// });
 
+//RESET PW POST ROUTE
+// app.post('/reset/:token', function(req, res) {
+//   async.waterfall([
+//     function(done) {
+//       User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+//         if (!user) {
+//           req.flash('error', 'Password reset token is invalid or has expired.');
+//           return res.redirect('back');
+//         }
+
+//         user.password = req.body.password;
+//         user.resetPasswordToken = undefined;
+//         user.resetPasswordExpires = undefined;
+
+//         user.save(function(err) {
+//           req.logIn(user, function(err) {
+//             done(err, user);
+//           });
+//         });
+//       });
+//     },
+//     function(user, done) {
+//       var smtpTransport = nodemailer.createTransport('SMTP', {
+//         service: 'SendGrid',
+//         auth: {
+//           user: '!!! YOUR SENDGRID USERNAME !!!',
+//           pass: '!!! YOUR SENDGRID PASSWORD !!!'
+//         }
+//       });
+//       var mailOptions = {
+//         to: user.email,
+//         from: 'passwordreset@demo.com',
+//         subject: 'Your password has been changed',
+//         text: 'Hello,\n\n' +
+//           'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
+//       };
+//       smtpTransport.sendMail(mailOptions, function(err) {
+//         req.flash('success', 'Success! Your password has been changed.');
+//         done(err);
+//       });
+//     }
+//   ], function(err) {
+//     res.redirect('/');
+//   });
+// });
 
 module.exports = router;
