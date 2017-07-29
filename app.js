@@ -80,6 +80,7 @@ app.use("/survey2", survey2Routes);
 app.use("/forum", forumRoutes);
 app.use("/forum/:id/forumcomment", forumCommentRoutes);
 
-app.listen(process.env.PORT || 3000, process.env.IP, function(req, res){
+app.listen(process.env.PORT, process.env.IP, function(req, res){
     console.log("Family Server Started");
+    console.log(process.env.PORT);
 });

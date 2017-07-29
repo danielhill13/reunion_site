@@ -101,8 +101,8 @@ router.post('/forgotpassword', function(req, res, next) {
       var smtpTransport = nodemailer.createTransport({
         service: 'Mailgun',
         auth: {
-          user: '',
-          pass: ''
+          user: process.env.MAILGUN_USERNAME,
+          pass: process.env.MAILGUN_PASSWORD
         }
       });
       var mailOptions = {
@@ -135,7 +135,8 @@ router.get('/reset/:token', function(req, res) {
       return res.redirect('/forgotpassword');
     }
     res.render('user/reset', {
-      user: req.user
+      user: req.user,
+      resetPasswordToken: req.params.token
     });
   });
 });
@@ -144,11 +145,11 @@ router.get('/reset/:token', function(req, res) {
 router.post('/reset/:token', function(req, res) {
   async.waterfall([
     function(done) {
-      User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
-        if (!user) {
-          req.flash('error', 'Password reset token is invalid or has expired.');
-          return res.redirect('back');
-        }
+    User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+      if (!user) {
+        req.flash('error', 'Password reset token is invalid or has expired.');
+        return res.redirect('back');
+      }
 
         user.password = req.body.password;
         user.resetPasswordToken = undefined;
@@ -165,8 +166,8 @@ router.post('/reset/:token', function(req, res) {
       var smtpTransport = nodemailer.createTransport({
         service: 'Mailgun',
         auth: {
-          user: '',
-          pass: ''
+          user: process.env.MAILGUN_USERNAME,
+          pass: process.env.MAILGUN_PASSWORD
         }
       });
       var mailOptions = {
