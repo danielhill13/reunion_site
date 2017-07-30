@@ -107,8 +107,8 @@ router.post('/forgotpassword', function(req, res, next) {
       });
       var mailOptions = {
         to: user.username,
-        from: 'passwordreset@hillfamilyreunion.us',
-        subject: 'Reunion Site Password Reset',
+        from: 'pwreset@hillfamilyreunion.us',
+        subject: 'Hill Family Reunion Site Password Reset',
         text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
           'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
           'http://' + req.headers.host + '/reset/' + token + '\n\n' +
@@ -151,7 +151,19 @@ router.post('/reset/:token', function(req, res) {
         return res.redirect('back');
       }
 
-        user.password = req.body.password;
+
+      //NEED TO SALT AND HASH PASSWORD
+//       yourSchemaName.findById(id, function(err, user) {
+//     user.setPassword(req.body.password, function(err) {
+//         if (err) //handle error
+//         user.save(function(err) {
+//             if (err) //handle error
+//             else //handle success
+//         });
+//     });
+// });
+//THIS JUST SAVES PASSWORD IN PLAINTEXT
+        user.password = req.body.password; 
         user.resetPasswordToken = undefined;
         user.resetPasswordExpires = undefined;
 
