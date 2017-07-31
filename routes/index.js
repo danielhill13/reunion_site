@@ -1,8 +1,8 @@
-var express = require("express");
-var router = express.Router();
-var passport = require("passport");
-var User = require("../models/user");
-var middleware = require("../middleware/index");
+var express             = require("express");
+var router              = express.Router();
+var passport            = require("passport");
+var User                = require("../models/user");
+var middleware          = require("../middleware/index");
 var async               = require('async');
 var crypto              = require('crypto');
 var nodemailer          = require('nodemailer');
@@ -150,26 +150,19 @@ router.post('/reset/:token', function(req, res) {
         req.flash('error', 'Password reset token is invalid or has expired.');
         return res.redirect('back');
       }
-
-
-      //NEED TO SALT AND HASH PASSWORD
-//       yourSchemaName.findById(id, function(err, user) {
-//     user.setPassword(req.body.password, function(err) {
-//         if (err) //handle error
-//         user.save(function(err) {
-//             if (err) //handle error
-//             else //handle success
-//         });
-//     });
-// });
-//THIS JUST SAVES PASSWORD IN PLAINTEXT
-        user.password = req.body.password; 
         user.resetPasswordToken = undefined;
         user.resetPasswordExpires = undefined;
 
-        user.save(function(err) {
+        user.setPassword(req.body.password, function(err){
+          if(err){
+            console.log(err);
+            req.flash('error', "Error updating your password");
+            res.redirect('/login');
+          }else {
+          } user.save(function(err) {
           req.logIn(user, function(err) {
             done(err, user);
+        });
           });
         });
       });
