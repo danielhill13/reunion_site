@@ -68,12 +68,12 @@ router.put("/profileupdate/:id", middleware.isLoggedIn, function(req, res){
     })
 })
 
-//FORGOT PASSWORD
+//FORGOT PASSWORD GET
 router.get('/forgotpassword', function(req, res){
     res.render('user/forgotpassword');
 })
 
-
+//FORGOT PASSWORD SUBMIT AND SEND RESET EMAIL
 router.post('/forgotpassword', function(req, res, next) {
   async.waterfall([
     function(done) {
