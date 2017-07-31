@@ -19,7 +19,14 @@ img {
 #navbar .item {
     color: black;
 }
-
+@media (max-width: 767px){
+    #navbar .item {
+        padding: 3px 4px;
+    }
+}
+.ui.mini.button {
+    padding: 0.5em 0.5em
+}
 }
 #introparagraph {
     font-size: 1em;

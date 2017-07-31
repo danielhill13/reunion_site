@@ -3,19 +3,19 @@
 <% include ../partials/flashes %>
 <h1> Discussion Forum Coming Soon</h1>
 <p>Discuss activities, excursions, accomodations, etc here!</p>
-
+    <div class="ui divider"></div>
 <% forum.forEach(function(forum){ %>
     <div>
-        <h2><a href="/forum/<%= forum._id %>"><%=forum.title%></a></h2>
+        <h3><a href="/forum/<%= forum._id %>"><%=forum.title%></a></h3>
 
         <p><%- forum.body %></p>
-        <p>Submitted by: <%= forum.author.username %> on <%= forum.created.toDateString() %></p>
+        <p><%= forum.author.username %> on <%= forum.created.toDateString().substr(4, 15) %></p>
     </div>
     <div class="ui divider"></div>
 
 <%}) %>
 </div>
 
-<h3><a href="/forum/new">New Topic</a></h3>
+<h5><a href="/forum/new">New Topic</a></h5>
 <%include ../partials/footer %>
 

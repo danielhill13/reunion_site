@@ -8,9 +8,9 @@
         <div class="item">
             <div class="description">
             <p><%- forum.body %></p>
+            <br>
             </div>
-                <p>Submitted by: <%= forum.author.username %> on 
-                <span><%= forum.created.toDateString() %></span></p> 
+                <p><%= forum.author.username %> on <span><%= forum.created.toDateString().substr(4, 15)  %></span></p> 
         </div>
 </div>
 
@@ -23,7 +23,7 @@
     <div class="content">
       <a class="author"><%= forumComment.author.username %></a>
       <div class="metadata">
-        <div class="date"><%= forumComment.createdDate.toDateString() %>
+        <div class="date"><%= forumComment.createdDate.toDateString().substr(4, 15)  %>
         </div>
       </div>
       <div class="text">
