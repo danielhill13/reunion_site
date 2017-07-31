@@ -1,0 +1,11 @@
+<% include ../partials/header %>
+<% include ../partials/navbar %>
+<% include ../partials/flashes %>
+<h1>Reset Password</h1>
+
+<form action="/reset/<%=resetPasswordToken%>" method="POST">
+    <p>New Password</p>
+    <input type="password" name="password" placeholder="password" required >
+    <button>Submit</button>
+</form>
+<% include ../partials/footer %>

@@ -1,9 +1,11 @@
-var express = require("express");
-var router = express.Router();
-var passport = require("passport");
-var User = require("../models/user");
-var middleware = require("../middleware/index");
+var express             = require("express");
+var router              = express.Router();
+var passport            = require("passport");
+var User                = require("../models/user");
+var middleware          = require("../middleware/index");
 var async               = require('async');
+var crypto              = require('crypto');
+var nodemailer          = require('nodemailer');
 
 //show register form
 router.get("/register", function(req, res){
@@ -71,26 +73,123 @@ router.get('/forgotpassword', function(req, res){
     res.render('user/forgotpassword');
 })
 
-//RECEIVE EMAIL ADDRESS
-router.post('/forgotpassword', function(req, res, next){
-    var token = Math.random() * 7534095;
-    User.findOne({username: req.body.username }, function(err, user){
+
+router.post('/forgotpassword', function(req, res, next) {
+  async.waterfall([
+    function(done) {
+      crypto.randomBytes(20, function(err, buf) {
+        var token = buf.toString('hex');
+        done(err, token);
+      });
+    },
+    function(token, done) {
+      User.findOne({ username: req.body.username }, function(err, user) {
         if (!user) {
-            req.flash('error', 'No account with that email address exists.');
-            res.redirect('/');
-        } else {
+          req.flash('error', 'No account with that email address exists.');
+          return res.redirect('/forgotpassword');
+        }
+
         user.resetPasswordToken = token;
         user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
-        user.save();
-        res.redirect('/');
+
+        user.save(function(err) {
+          done(err, token, user);
+        });
+      });
+    },
+    function(token, user, done) {
+      var smtpTransport = nodemailer.createTransport({
+        service: 'Mailgun',
+        auth: {
+          user: process.env.MAILGUN_USERNAME,
+          pass: process.env.MAILGUN_PASSWORD
         }
-    })
-})
-//NEED TO BUILD AND SEND EMAIL HERE
+      });
+      var mailOptions = {
+        to: user.username,
+        from: 'pwreset@hillfamilyreunion.us',
+        subject: 'Hill Family Reunion Site Password Reset',
+        text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+          'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+          'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+          'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+      };
+      smtpTransport.sendMail(mailOptions, function(err) {
+        req.flash('success', 'An e-mail has been sent to ' + user.username + ' with further instructions.');
+        done(err, 'done');
+        res.redirect('/');
+      });
+    }
+  ], function(err) {
+    if (err) return next(err);
+    res.redirect('/forgotpassword');
+  });
+});
 
-//NEED TO ADD ROUTES FOR ACTUAL PASSWORD RESET
 
+// GET PW RESET PAGE
+router.get('/reset/:token', function(req, res) {
+  User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+    if (!user) {
+      req.flash('error', 'Password reset token is invalid or has expired.');
+      return res.redirect('/forgotpassword');
+    }
+    res.render('user/reset', {
+      user: req.user,
+      resetPasswordToken: req.params.token
+    });
+  });
+});
 
+//RESET PW POST ROUTE
+router.post('/reset/:token', function(req, res) {
+  async.waterfall([
+    function(done) {
+    User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+      if (!user) {
+        req.flash('error', 'Password reset token is invalid or has expired.');
+        return res.redirect('back');
+      }
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpires = undefined;
 
+        user.setPassword(req.body.password, function(err){
+          if(err){
+            console.log(err);
+            req.flash('error', "Error updating your password");
+            res.redirect('/login');
+          }else {
+          } user.save(function(err) {
+          req.logIn(user, function(err) {
+            done(err, user);
+        });
+          });
+        });
+      });
+    },
+    function(user, done) {
+      var smtpTransport = nodemailer.createTransport({
+        service: 'Mailgun',
+        auth: {
+          user: process.env.MAILGUN_USERNAME,
+          pass: process.env.MAILGUN_PASSWORD
+        }
+      });
+      var mailOptions = {
+        to: user.username,
+        from: 'passwordreset@hillfamilyreunion.us',
+        subject: 'Your password has been changed',
+        text: 'Hello,\n\n' +
+          'This is a confirmation that the password for your account ' + user.username + ' has just been changed.\n'
+      };
+      smtpTransport.sendMail(mailOptions, function(err) {
+        req.flash('success', 'Success! Your password has been changed.');
+        done(err);
+      });
+    }
+  ], function(err) {
+    res.redirect('/');
+  });
+});
 
 module.exports = router;
