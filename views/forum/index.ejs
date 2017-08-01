@@ -1,18 +1,18 @@
 <% include ../partials/header %>
 <% include ../partials/navbar %>
 <% include ../partials/flashes %>
-<h1> Discussion Forum Coming Soon</h1>
-<p>Discuss activities, excursions, accomodations, etc here!</p>
-    <div class="ui divider"></div>
+<h1> Discussion Forum</h1>
+<p>Let's talk about activities, travel plans, accomodations, etc here!</p>
+    <div class="basicdivider"></div>
 <% forum.forEach(function(forum){ %>
-    <div>
-        <h3><a href="/forum/<%= forum._id %>"><%=forum.title%></a></h3>
-
-        <p><%- forum.body %></p>
-        <p><%= forum.author.username %> on <%= forum.created.toDateString().substr(4, 15) %></p>
+    <div class='forumindexentry'>
+    <a href="/forum/<%= forum._id %>">
+        <h4 class='forumindextitle'><%=forum.title%></h4>
+        <p class='forumindexbody'><%- forum.body.substr(0,35) %>....click for more</p>
+        <p class='forumindexinfo'>Submitted by: <%= forum.author.username %></p>
     </div>
-    <div class="ui divider"></div>
-
+    <div class="basicdivider"></div>
+        </a>
 <%}) %>
 </div>
 
