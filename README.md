@@ -7,7 +7,7 @@ Features:
 - Landing page - done
 - Destinations page - done
 - Register, Login - done
-- Password Reset/Email - need to learn this flow and implement
+- Password Reset/Email - done
 - Forum to create posts and comment/thread - In Progress
 - Activities area, sign up, pay coordinators for deposits, fees, etc - TBD
 - Where to go from here?

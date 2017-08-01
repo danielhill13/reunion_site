@@ -15,6 +15,7 @@ var express             = require('express'),
     crypto              = require('crypto'),
     dotenv              = require('dotenv'),
     Destination         = require("./models/destination"),
+    Activity            = require("./models/activity"),
     Comment             = require("./models/comment"),
     User                = require("./models/user"),
     Survey2             = require("./models/survey2"),
@@ -81,6 +82,5 @@ app.use("/forum", forumRoutes);
 app.use("/forum/:id/forumcomment", forumCommentRoutes);
 
 app.listen(process.env.PORT, process.env.IP, function(req, res){
-    console.log("Family Server Started");
-    console.log(process.env.PORT);
+    console.log("Family Server Started on port " + process.env.PORT);
 });
