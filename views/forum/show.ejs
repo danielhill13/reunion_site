@@ -2,15 +2,11 @@
 <% include ../partials/navbar %>
 <% include ../partials/flashes %>
 <div class ="ui container segment" id="homeheader">
-    <div class="ui huge header"><%= forum.title %></div>
-    <div class="ui divider"></div>
-
-        <div class="item">
-            <div class="description">
+    <h4 class='forumindextitle'><%=forum.title%></h4>
+    <div class="basicdivider"></div>
             <p><%- forum.body %></p>
+            <p><%= forum.author.username %> on <span><%= forum.created.toDateString().substr(4, 15)  %></span></p> 
             </div>
-                <p>Submitted by: <%= forum.author.username %> on 
-                <span><%= forum.created.toDateString() %></span></p> 
         </div>
 </div>
 
@@ -23,7 +19,7 @@
     <div class="content">
       <a class="author"><%= forumComment.author.username %></a>
       <div class="metadata">
-        <div class="date"><%= forumComment.createdDate.toDateString() %>
+        <div class="date"><%= forumComment.createdDate.toDateString().substr(4, 15)  %>
         </div>
       </div>
       <div class="text">
