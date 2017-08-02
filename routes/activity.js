@@ -1,5 +1,5 @@
 var express         = require("express"),
-    router          = express.Router({mergeParams: true}),
+    router          = express.Router(),
     middleware      = require("../middleware"),
     Activity        = require("../models/activity");
 
@@ -37,3 +37,5 @@ router.post('/', middleware.isLoggedIn, function(req, res){
         }
     })
 })
+
+module.exports = router;

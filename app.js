@@ -28,7 +28,7 @@ var commentRoutes       = require("./routes/comments"),
     survey2Routes       = require("./routes/survey2"),
     forumRoutes         = require("./routes/forum");
     forumCommentRoutes  = require("./routes/forumcomment");
-    activityRoutes  = require("./routes/activity");
+    activityRoutes      = require("./routes/activity");
 
 // Load environment variables from .env file
 dotenv.load();
