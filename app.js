@@ -28,6 +28,7 @@ var commentRoutes       = require("./routes/comments"),
     survey2Routes       = require("./routes/survey2"),
     forumRoutes         = require("./routes/forum");
     forumCommentRoutes  = require("./routes/forumcomment");
+    activityRoutes  = require("./routes/activity");
 
 // Load environment variables from .env file
 dotenv.load();
@@ -66,12 +67,9 @@ app.use(function(req, res, next){
 app.get("/", function(req, res){
     res.render('index');
 });
-app.get("/event-details", function(req, res){
-    res.render('event-details');
-});
-app.get("/photos", function(req, res){
-    res.render('photos');
-});
+// app.get("/photos", function(req, res){
+//     res.render('photos');
+// });
 
 
 app.use(indexRoutes);
@@ -80,6 +78,7 @@ app.use("/destinations/:id/comments", commentRoutes);
 app.use("/survey2", survey2Routes);
 app.use("/forum", forumRoutes);
 app.use("/forum/:id/forumcomment", forumCommentRoutes);
+app.use("/activity", activityRoutes);
 
 app.listen(process.env.PORT, process.env.IP, function(req, res){
     console.log("Family Server Started on port " + process.env.PORT);
