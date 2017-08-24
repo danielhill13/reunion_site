@@ -14,4 +14,4 @@ This project is my first "real world" go at web development. Having recently com
 
 
 
-Open to any and all feedback! Check it out [here](www.hillfamilyreunion.us)
+Open to any and all feedback! Check it out [here](http://www.hillfamilyreunion.us)
