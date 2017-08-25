@@ -1,8 +1,8 @@
-var express = require("express");
-var router = express.Router({mergeParams: true});
-var middleware = require("../middleware");
-var Forum = require("../models/forum");
-var ForumComment = require("../models/forumcomment");
+var express         = require("express"),
+    router          = express.Router({mergeParams: true}),
+    middleware      = require("../middleware"),
+    Forum           = require("../models/forum"),
+    ForumComment    = require("../models/forumcomment");
 
 router.get("/new", middleware.isLoggedIn,function(req, res){
     Forum.findById(req.params.id, function(err, forum){
