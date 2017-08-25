@@ -1,6 +1,5 @@
 var express = require("express"),
     router  = express.Router(),
-    Destination = require("../models/destination"),
     middleware = require("../middleware"),
     Forum       = require("../models/forum"),
     ForumComment       = require("../models/forumcomment");

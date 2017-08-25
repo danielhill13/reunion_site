@@ -6,7 +6,9 @@ background: linear-gradient(to top, #A7BFE8, #6190E8); /* W3C, IE 10+/ Edge, Fir
 
 }
 html, body {
+    max-width: 1080px;
     height: 100%;
+    margin: auto auto;
 }
 i.icon {
     font-size: 2em;
@@ -63,10 +65,12 @@ img {
     border-top: 1px solid rgba(34,36,38,.15);
     border-bottom: 1px solid rgba(255,255,255,.1);
 }
-#homeheader {
+#homeheader, #navbar {
     width: 99%;
     margin-left: 0.3em!important;
     margin-right: 0.3em!important;
+}
+#homeheader {
     padding: 0.2rem;
 }
 .lower {
