@@ -81,5 +81,5 @@ app.use("/forum/:id/forumcomment", forumCommentRoutes);
 app.use("/activity", activityRoutes);
 
 app.listen(process.env.PORT || 3000, process.env.IP, function(req, res){
-    console.log("Family Server Started on port " + process.env.PORT || 3000);
+    console.log("Family Server Started");
 });
