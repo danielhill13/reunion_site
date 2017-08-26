@@ -80,6 +80,6 @@ app.use("/forum", forumRoutes);
 app.use("/forum/:id/forumcomment", forumCommentRoutes);
 app.use("/activity", activityRoutes);
 
-app.listen(process.env.PORT, process.env.IP, function(req, res){
-    console.log("Family Server Started on port " + process.env.PORT);
+app.listen(process.env.PORT || 3000, process.env.IP, function(req, res){
+    console.log("Family Server Started on port " + process.env.PORT || 3000);
 });
