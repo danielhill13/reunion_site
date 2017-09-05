@@ -2,43 +2,40 @@
 <% include ../partials/navbar %>
 <% include ../partials/flashes %>
 <div class ="ui container segment" id="homeheader">
-    <h4 class='forumindextitle'><%=forum.title%></h4>
-    <div class="basicdivider"></div>
-            <p><%- forum.body %></p>
-            <p><%= forum.author.username %> on <span><%= forum.created.toDateString().substr(4, 15)  %></span></p> 
-            </div>
-        </div>
+  <h4 class='forumindextitle'><%=forum.title%></h4>
+  <div class="basicdivider"></div>
+  <p><%- forum.body %></p>
+  <p>posted by <%= forum.author.username %> - <span><%= forum.created.toDateString().substr(4, 15)  %></span></p> 
 </div>
-
-
 
 <div class="ui comments">
-    <h3 class="ui dividing header">Comments</h3>
+  <h3 class="ui dividing header">Comments</h3>
   <% forum.comments.forEach(function(forumComment){ %>
-  <div class="comment">
-    <div class="content">
-      <a class="author"><%= forumComment.author.username %></a>
-      <div class="metadata">
-        <div class="date"><%= forumComment.createdDate.toDateString().substr(4, 15)  %>
+    <div class="comment">
+      <div class="content">
+        <a class="author"><%= forumComment.author.username %></a>
+        <div class="metadata">
+          <div class="date"><%= forumComment.createdDate.toDateString().substr(4, 15)  %>
+          </div>
         </div>
-      </div>
-      <div class="text">
-        <%= forumComment.text %>
-      </div>
-    <% if(currentUser && forumComment.author.id.equals(currentUser._id)){ %>
-        <a class="orange ui button mini"
-            href="/forum/<%= forum._id %>/comments/<%= forumComment._id %>/edit">
-            Edit
+        <div class="text">
+          <%= forumComment.text %>
+        </div>
+        <% if(currentUser && forumComment.author.id.equals(currentUser._id)){ %>
+          <a class="orange ui button mini"
+          href="/forum/<%= forum._id %>/comments/<%= forumComment._id %>/edit">
+          Edit
         </a>
         <form class="delete-form" action="/forum/<%= forum._id %>/comments/<%= forumComment._id %>?_method=DELETE" method="POST">
-        <input class="negative ui button mini" type="submit"  value="Delete">
+          <input class="negative ui button mini" type="submit"  value="Delete">
         </form>
-    <% } %>
+        <% } %>
+      </div>
     </div>
-  </div>
-  <% }) %>
-  <br>
+    <% }) %>
+    <br>
     <a class="ui primary small button" href="/forum/<%= forum._id %>/forumcomment/new">
-     Add Comment
+      Add Comment
     </a>
-</div>
+  </div>
+  <% include ../partials/footer %>
