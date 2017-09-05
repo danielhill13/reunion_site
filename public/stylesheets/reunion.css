@@ -25,7 +25,16 @@ img {
     #navbar .item {
         padding: 3px 4px;
     }
+    #navbar {
+        display: none;
+    }
 }
+@media (min-width: 768px){
+    #footer {
+        display: none;
+    }
+}
+
 .forumindexentry a {
     color: black;
 }
@@ -49,11 +58,11 @@ img {
 .delete-form {
     display: inline;
 }
-#footerdiv {
+/* #footerdiv {
     position : relative;
     left: 0;
     bottom : 0;
-}
+} */
 .forumindexbody {
     margin: 0.2px;
 }
@@ -79,7 +88,9 @@ img {
 .container.main {
     margin-top: 1.0em; 
 }
-
+.reunion{
+    max-height: 400px;
+}
 #delete {
     display: inline;
 }

@@ -67,14 +67,14 @@ app.use(function(req, res, next){
 app.get("/", function(req, res){
     res.render('index');
 });
-// app.get("/photos", function(req, res){
-//     res.render('photos');
-// });
+app.get("/destination", function(req, res){
+    res.render('destination');
+});
 
 
 app.use(indexRoutes);
-app.use("/destinations", destinationRoutes);
-app.use("/destinations/:id/comments", commentRoutes);
+// app.use("/destinations", destinationRoutes);
+// app.use("/destinations/:id/comments", commentRoutes);
 app.use("/survey2", survey2Routes);
 app.use("/forum", forumRoutes);
 app.use("/forum/:id/forumcomment", forumCommentRoutes);
