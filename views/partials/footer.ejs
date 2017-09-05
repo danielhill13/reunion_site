@@ -3,22 +3,20 @@
     <a href="/" class="item">Home</a>
     <a href="/destination" class="item">Destination</a>
     <a href="/activity"class="item">Events</a>
-    <a href="/forum"class="item">Discussion</a>
-    <div class="right menu">
-            <%if (!currentUser){ %>
-            <a class="item" href="/login">Login</a>
-            <!-- <a class="item" href="/register">Sign Up</a> -->
-            <% }else { %>
-            <a class="item" href="/profile"><%= currentUser.username %></a>
-            <a class="item" href="/logout">Logout</a>
-            <% } %>
-    </div>
+    <a href="/forum"class="item">Forum</a>
+    <%if (!currentUser){ %>
+    <a class="item" href="/login">Login</a>
+    <a class="item" href="/register">Signup</a>
+    <% }else { %>
+    <a class="item" href="/logout">Logout</a>
+    <% } %>
   </div>
 
 
 
 
 
+</div>
 <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="

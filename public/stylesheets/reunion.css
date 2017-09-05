@@ -3,12 +3,15 @@ body {
 background: #6190E8;  /* fallback for old browsers */
 background: -webkit-linear-gradient(to top, #A7BFE8, #6190E8);  /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to top, #A7BFE8, #6190E8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+display: flex;
+flex-direction: column;
+min-height: 100%;
 
 }
 html, body {
     max-width: 1080px;
     height: 100%;
-    margin: auto auto;
+    margin: 0;
 }
 i.icon {
     font-size: 2em;
@@ -28,13 +31,32 @@ img {
     #navbar {
         display: none;
     }
+    #footer{
+        display: flex;
+    }
 }
 @media (min-width: 768px){
     #footer {
         display: none;
     }
 }
-
+#footer {
+    flex-shrink: 0;
+    height: 24px;
+    font-size: 0.85em;
+}
+#footer div {
+    margin: 0px 3px 0px 0px;
+}
+#footer a {
+    padding: 0px 6px;
+}
+/* #footer .item {
+    height: 24px;
+} */
+.content {  
+    flex: 1 0 auto;
+}
 .forumindexentry a {
     color: black;
 }
