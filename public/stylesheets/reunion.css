@@ -9,9 +9,8 @@ body {
 
 }
 html, body {
-    max-width: 1080px;
     height: 100%;
-    margin: 0;
+    margin: auto auto;
 }
 i.icon {
     font-size: 2em;
