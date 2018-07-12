@@ -82,7 +82,14 @@ img {
     width: 100%;
 }
 #homeheader{
-    width: 100%;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }
 #homeheader {
     padding: 0.1rem;
@@ -98,6 +105,9 @@ img {
 }
 #delete {
     display: inline;
+}
+#poolphoto {
+    max-width: 80%;
 }
 .forumindexentry, .comment{
     -webkit-box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.75);

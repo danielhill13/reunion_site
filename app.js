@@ -70,7 +70,9 @@ app.get("/", function(req, res){
 app.get("/destination", function(req, res){
     res.render('destination');
 });
-
+app.get("/firstyear", function(req, res){
+    res.render("firstyear");
+});
 
 app.use(indexRoutes);
 // app.use("/destinations", destinationRoutes);
