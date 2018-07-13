@@ -128,3 +128,8 @@ img {
 .forumindextitle {
     margin: 0.2px;
 }
+.pa-widget-gallery {
+    max-height: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}

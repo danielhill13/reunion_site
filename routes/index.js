@@ -9,68 +9,73 @@ var nodemailer          = require('nodemailer');
 
 //show register form
 router.get("/register", function(req, res){
-    res.render("user/register");
+  res.render("user/register");
 })
 //handle signup logic
 router.post("/register", function(req, res){
-    var lowercaseUser = req.body.username.toLowerCase();
-    var newUser = new User({username: lowercaseUser, email: req.body.email});
-    User.register(newUser, req.body.password, function(err, user){
-        if(err){
-           req.flash("error", err.message);
-           return res.render("user/register");
-        }
-        passport.authenticate("local")(req, res, function(){
-            req.flash("success", "Welcome to the Hill Family Reunion Site " + user.username + "!");
-            res.redirect("/destinations");
-        })
+  var lowercaseUser = req.body.username.toLowerCase();
+  var newUser = new User({username: lowercaseUser, email: req.body.email});
+  User.register(newUser, req.body.password, function(err, user){
+    if(err){
+      req.flash("error", err.message);
+      return res.render("user/register");
+    }
+    passport.authenticate("local")(req, res, function(){
+      req.flash("success", "Welcome to the Hill Family Reunion Site " + user.username + "!");
+      res.redirect("/destinations");
     })
+  })
 })
 //show login form
 router.get("/login", function (req, res){
-    res.render("user/login");
+  res.render("user/login");
 })
 //login logic
 router.post("/login", passport.authenticate("local",
-    {
-        successRedirect: "/",
-        failureRedirect: "/login"
-    }), function (req, res){
+{
+  successRedirect: "/",
+  failureRedirect: "/login"
+}), function (req, res){
 })
 //logout route
 router.get("/logout", function(req, res){
-    req.logout();
-    req.flash("success", "Logged you out");
-    res.redirect("/");
+  req.logout();
+  req.flash("success", "Logged you out");
+  res.redirect("/");
 })
 
 //View your profile
 router.get("/profile", function(req, res){
-    res.render("user/profile");
+  res.render("user/profile");
 })
 //EDIT edit profile
 router.get("/profileupdate", middleware.isLoggedIn, function(req, res){
-    User.findById(req.params.id, function(err, foundUser){
+  User.findById(req.params.id, function(err, foundUser){
     res.render("user/profileupdate", {user: foundUser});
-    })
+  })
 })
 
 //UPDATE profile
 router.put("/profileupdate/:id", middleware.isLoggedIn, function(req, res){
-    User.findByIdAndUpdate(req.params.id, req.body.user, function(err, updatedUser){
-        if(err){
-            console.log("Error updating profile");
-            res.redirect("/profile");
-        } else {
-            req.flash("success", "Profile updated successfully");
-            res.redirect("/");
-        }
-    })
+  User.findByIdAndUpdate(req.params.id, req.body.user, function(err, updatedUser){
+    if(err){
+      console.log("Error updating profile");
+      res.redirect("/profile");
+    } else {
+      req.flash("success", "Profile updated successfully");
+      res.redirect("/");
+    }
+  })
 })
+
+//First Year Page
+router.get("/firstyear", middleware.isLoggedIn, function(req, res){
+    res.render("firstyear");
+    })
 
 //FORGOT PASSWORD GET
 router.get('/forgotpassword', function(req, res){
-    res.render('user/forgotpassword');
+  res.render('user/forgotpassword');
 })
 
 //FORGOT PASSWORD SUBMIT AND SEND RESET EMAIL
@@ -88,7 +93,7 @@ router.post('/forgotpassword', function(req, res, next) {
           req.flash('error', 'No account with that email address exists.');
           return res.redirect('/forgotpassword');
         }
-
+        
         user.resetPasswordToken = token;
         user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
 
