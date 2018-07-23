@@ -69,7 +69,7 @@ router.put("/profileupdate/:id", middleware.isLoggedIn, function(req, res){
 })
 
 //First Year Page
-router.get("/firstyear", middleware.isLoggedIn, function(req, res){
+router.get("/firstyear", function(req, res){
     res.render("firstyear");
     })
 
