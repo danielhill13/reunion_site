@@ -1,16 +1,29 @@
-<div id="navbar" class="ui stackable borderless menu ">
-    <a href="/" class="item">Home</a>
-    <a href="/firstyear" class="item">2018 Recap</a>
-    <a href="/destination" class="item">Destination</a>
-    <a href="/activity"class="item">Events & Activities</a>
-    <a href="/forum"class="item">Discussion</a>
+<div id="navbar" class="ui pointing menu ">
+  <div  class="left menu">
+        <div  class="item">
+        <a href="/">Home</a>
+        </div>
+        <div class="item">
+        <a href="/firstyear" >2018 Recap</a>
+        </div>
+        <div class="item">
+        <a href="/destination" >Destination</a>
+        </div>
+    </div>
+    
     <div class="right menu">
             <%if (!currentUser){ %>
-            <a class="item" href="/login">Login</a>
-            <!-- <a class="item" href="/register">Sign Up</a> -->
+        <div class="item">
+        <a  href="/login">Login</a>
+        </div>
+        <!-- <a class="item" href="/register">Sign Up</a> -->
             <% }else { %>
-             <!-- <a class="item" href="/profile">Signed in as <%= currentUser.username %></a>-->
-            <a class="item" href="/logout">Logout</a>
+        <!-- <div class="item">
+        <a  href="/profile">Signed in as <%= currentUser.username %></a>
+        </div> -->
+        <div>
+        <a class="item" href="/logout">Logout</a>
+        </div>
             <% } %>
     </div>
   </div>
